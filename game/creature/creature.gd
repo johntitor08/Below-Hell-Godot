@@ -53,6 +53,10 @@ var _time := 0.0
 var _knock := Vector2.ZERO
 var _last_damage_from := Vector2.ZERO
 var abilities: Array = []
+var stamina := 1.0
+var max_stamina := 1.0
+var air := 4.0
+var _drown_t := 0.0
 
 var visual: Node2D
 var sprite: Sprite2D
@@ -98,6 +102,9 @@ func set_form(d: CreatureDef, keep_hp_ratio := false) -> void:
 	hp = clampi(int(ceil(max_hp * ratio)), 1, max_hp)
 	flying = d.flight
 	extra_jumps = 1 if d.has("double_jump") else 0
+	max_stamina = {1: 0.8, 2: 2.6, 3: 4.0, 4: 5.5}.get(d.tier, 2.0)
+	stamina = max_stamina
+	air = 4.0
 	sprite.texture = d.texture
 	var h := d.height_px()
 	var tex_h := float(d.texture.get_height())
@@ -157,6 +164,7 @@ func _physics_process(delta: float) -> void:
 		input.move = Vector2.ZERO
 		input.clear_edges()
 	_move(delta)
+	_drown(delta)
 	_combat(delta)
 	for a in abilities:
 		if is_instance_valid(a):
@@ -194,10 +202,10 @@ func _move(delta: float) -> void:
 	on_wall = 0
 	if is_on_wall():
 		on_wall = -1 if get_wall_normal().x > 0.0 else 1
-	if flying:
-		_fly(delta)
-	elif in_water:
+	if in_water:
 		_swim(delta)
+	elif flying:
+		_fly(delta)
 	else:
 		if def.has("wall_climb") and on_wall != 0 and signf(x) == on_wall:
 			climbing = true
@@ -242,17 +250,48 @@ func _do_jump(mult: float) -> void:
 	_land_squash = -0.35
 	Audio.play("whoosh", -14.0, 0.2)
 
+func breathes_water() -> bool:
+	return def.has("water_breathing") or def.has("underwater_speed_9") or def.has("squeeze_through_pipes")
+
 func _fly(delta: float) -> void:
+	if is_on_floor():
+		stamina = minf(max_stamina, stamina + delta * max_stamina * 1.5)
 	var y := input.move.y
 	if input.jump_held:
 		y = -1.0
-	var target_y := y * def.run_speed() * 0.85 * speed_mult
-	if absf(y) < 0.1:
-		target_y = sin(_time * 3.0) * 30.0
-	velocity.y = move_toward(velocity.y, target_y, 3200.0 * delta)
+	var target_y := 0.0
+	if y < -0.1 and stamina > 0.0:
+		stamina = maxf(0.0, stamina - delta)
+		target_y = y * def.run_speed() * 0.6 * speed_mult
+	elif y > 0.1:
+		target_y = y * def.run_speed() * 1.1
+	else:
+		target_y = 150.0 if stamina > 0.0 else 380.0
+	velocity.y = move_toward(velocity.y, target_y, 2600.0 * delta)
+
+func _drown(delta: float) -> void:
+	var submerged := in_water and _head_in_water()
+	if not submerged or breathes_water():
+		air = minf(4.0, air + delta * 3.0)
+		_drown_t = 0.0
+		return
+	air -= delta
+	if air <= 0.0:
+		_drown_t -= delta
+		if _drown_t <= 0.0:
+			_drown_t = 0.8
+			invulnerable_until = 0.0
+			take_hit(6, global_position, Vector2(0, -60))
+
+func _head_in_water() -> bool:
+	var head := global_position + Vector2(0, -body_height() * 0.8)
+	for w in get_tree().get_nodes_in_group("water"):
+		if Rect2(w.global_position, w.size).has_point(head):
+			return true
+	return false
 
 func _swim(delta: float) -> void:
-	var breathe := def.has("water_breathing") or def.has("underwater_speed_9") or def.has("squeeze_through_pipes")
+	var breathe := breathes_water()
 	var y := input.move.y
 	if input.jump_held:
 		y = -1.0

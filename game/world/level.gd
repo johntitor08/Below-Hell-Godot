@@ -222,11 +222,12 @@ func _build_entities() -> void:
 		wa.size = Vector2(r.size) * TILE
 		_add(wa, r.position.x, r.position.y)
 	_rects("~", make_water)
-	var make_dark := func(r: Rect2i):
-		var dz := Entities.DarkZone.new()
-		dz.size = Vector2(r.size) * TILE
-		_add(dz, r.position.x, r.position.y)
-	_rects("D", make_dark)
+	for part in str(map.meta.get("dark", "")).split(";", false):
+		var v := part.split(",")
+		if v.size() == 4:
+			var dz := Entities.DarkZone.new()
+			dz.size = Vector2(float(v[2]), float(v[3])) * TILE
+			_add(dz, int(v[0]), int(v[1]))
 
 func _runs(ch: String, make: Callable) -> void:
 	for y in map.height:

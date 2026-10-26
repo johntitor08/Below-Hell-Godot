@@ -27,23 +27,35 @@ func _process(_d: float) -> void:
 		var p := ck.split(":")
 		if p.size() == 3 and int(p[0]) == _frames:
 			_click(Vector2(float(p[1]), float(p[2])))
+	if _frames >= _target:
+		if _out != "":
+			var img := get_viewport().get_texture().get_image()
+			img.save_png(_out)
+			print("SHOT ", _out)
+		get_tree().quit()
+
+var _pframes := 0
+
+func _physics_process(_d: float) -> void:
+	if _args.is_empty():
+		return
+	_pframes += 1
 	for h in str(_args.get("hold", "")).split(",", false):
 		var p := h.split(":")
 		if p.size() >= 3:
 			var f0 := int(p[0])
 			var f1 := f0 + int(p[2])
-			if _frames == f0:
+			if _pframes == f0:
 				Input.action_press(p[1])
-			elif _frames == f1:
+			elif _pframes == f1:
 				Input.action_release(p[1])
 	for st in str(_args.get("steps", "")).split(";", false):
 		var at := st.find("@")
-		if at > 0 and int(st.substr(0, at)) == _frames:
+		if at > 0 and int(st.substr(0, at)) == _pframes:
 			_run(st.substr(at + 1))
-	if _frames >= _target:
+	if _args.has("pframes") and _pframes >= int(_args["pframes"]):
 		if _out != "":
-			var img := get_viewport().get_texture().get_image()
-			img.save_png(_out)
+			get_viewport().get_texture().get_image().save_png(_out)
 			print("SHOT ", _out)
 		get_tree().quit()
 

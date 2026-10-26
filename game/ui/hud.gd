@@ -24,9 +24,12 @@ var radial_sel := -1
 var radial_info: Label
 var radial_name: Label
 var radial_stats: Label
+var _last_mouse := Vector2.ZERO
 var pause_panel: Control
 var complete_panel: Control
 var hint: Label
+var meter: ProgressBar
+var meter_fill: StyleBoxFlat
 
 func _ready() -> void:
 	layer = 10
@@ -113,6 +116,17 @@ func _build_status() -> void:
 	hp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	hp_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	box.add_child(hp_label)
+	meter = ProgressBar.new()
+	meter.show_percentage = false
+	meter.max_value = 1.0
+	meter.position = Vector2(152, 88)
+	meter.size = Vector2(350, 8)
+	meter.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	meter_fill = StyleBoxFlat.new()
+	meter_fill.set_corner_radius_all(4)
+	meter_fill.bg_color = Color(0.55, 0.85, 1.0)
+	meter.add_theme_stylebox_override("fill", meter_fill)
+	box.add_child(meter)
 	oz_box = HBoxContainer.new()
 	oz_box.position = Vector2(152, 100)
 	oz_box.add_theme_constant_override("separation", 6)
@@ -259,6 +273,16 @@ func _process(_delta: float) -> void:
 	var p := level.player
 	if p == null:
 		return
+	if p.in_water and not p.breathes_water():
+		meter.visible = true
+		meter.value = p.air / 4.0
+		meter_fill.bg_color = Color(0.4, 0.75, 1.0) if p.air > 1.2 else Color(1, 0.4, 0.35)
+	elif p.flying:
+		meter.visible = true
+		meter.value = p.stamina / p.max_stamina
+		meter_fill.bg_color = Color(0.95, 0.85, 0.55) if p.stamina > 0.3 else Color(1, 0.5, 0.3)
+	else:
+		meter.visible = false
 	_update_ab(ab1, Abilities.primary_of(p))
 	_update_ab(ab2, Abilities.secondary_of(p))
 	_radial_input()
@@ -352,8 +376,11 @@ func _radial_input() -> void:
 	var held := Input.is_action_pressed("forms")
 	if held and not radial.visible:
 		radial.visible = true
+		banner_title.modulate.a = 0.0
+		banner_sub.modulate.a = 0.0
 		Fx.slowmo(0.12)
 		radial_sel = Creatures.all.find(level.essence.current())
+		_last_mouse = root.get_global_mouse_position()
 		_refresh_radial()
 		Audio.play("whoosh", -10.0)
 	elif not held and radial.visible:
@@ -364,9 +391,15 @@ func _radial_input() -> void:
 	if not radial.visible:
 		return
 	var v := Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
-	var mouse := root.get_global_mouse_position() - root.size * 0.5
-	if v.length() < 0.4 and mouse.length() > 140.0:
-		v = mouse
+	var mp := root.get_global_mouse_position()
+	var mouse := mp - root.size * 0.5
+	var moved := mp.distance_to(_last_mouse) > 3.0
+	_last_mouse = mp
+	if v.length() < 0.4:
+		if moved and mouse.length() > 140.0:
+			v = mouse
+		else:
+			return
 	if v.length() > 0.3:
 		var a := fposmod(v.angle() + PI * 0.5, TAU)
 		var i := int(round(a / TAU * Creatures.all.size())) % Creatures.all.size()
