@@ -254,6 +254,14 @@ def sprite_sheet_rect(png, name):
     return None, None, None
 
 
+def sprite_sheet_entry(png, name):
+    ti = meta(png).get("TextureImporter", {})
+    for e in (ti.get("spriteSheet", {}) or {}).get("sprites", []) or []:
+        if e.get("name") == name:
+            return e
+    return None
+
+
 def sprite_border(png):
     ti = meta(png).get("TextureImporter", {})
     b = (ti.get("spriteBorder") or {})

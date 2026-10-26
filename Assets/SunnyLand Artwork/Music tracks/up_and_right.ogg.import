@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bxmrhbdyatwdm"
+path="res://.godot/imported/up_and_right.ogg-f2fc50dfd9bf7e5916269860409171cb.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/SunnyLand Artwork/Music tracks/up_and_right.ogg"
+dest_files=["res://.godot/imported/up_and_right.ogg-f2fc50dfd9bf7e5916269860409171cb.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

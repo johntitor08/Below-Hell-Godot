@@ -1,0 +1,2 @@
+class_name UNetworkTransform
+extends Mono

@@ -14,6 +14,8 @@ var pixelsPerUnit: float = 100.0
 var radius: int = 0
 var ring_width: int = 0
 var key: String = ""
+var pivot := Vector2(0.5, 0.5)
+var filter := 1
 var _region_known := false
 
 var texture: Texture2D:
@@ -60,6 +62,9 @@ static func from_meta(k: String, m: Dictionary) -> USprite:
 	s.pixelsPerUnit = float(m.get("ppu", 100))
 	var b = m.get("border", [0, 0, 0, 0])
 	s.border = Vector4(b[0], b[1], b[2], b[3])
+	var pv = m.get("pivot", [0.5, 0.5])
+	s.pivot = Vector2(pv[0], pv[1])
+	s.filter = int(m.get("filter", 1))
 	if m.has("rect"):
 		var r = m["rect"]
 		s._region_known = true

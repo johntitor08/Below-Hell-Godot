@@ -102,17 +102,31 @@ def sprite_ref(ref):
         meta = {"tex": media_ref(png), "name": sub or os.path.splitext(os.path.basename(png))[0]}
         ti = uy.meta(png).get("TextureImporter", {})
         meta["ppu"] = ti.get("spritePixelsToUnits", 100)
+        meta["filter"] = (ti.get("textureSettings") or {}).get("filterMode", 1)
         if sub:
-            rect, border, _ = uy.sprite_sheet_rect(png, sub)
+            rect, border, pivot = uy.sprite_sheet_rect(png, sub)
+            ent = uy.sprite_sheet_entry(png, sub) or {}
             if rect:
                 meta["rect"] = [rect["x"], rect["y"], rect["width"], rect["height"]]
             if border:
                 meta["border"] = [border.get("x", 0), border.get("y", 0), border.get("z", 0), border.get("w", 0)]
+            meta["pivot"] = align_pivot(ent.get("alignment", 0), pivot)
         else:
             b = ti.get("spriteBorder") or {}
             meta["border"] = [b.get("x", 0), b.get("y", 0), b.get("z", 0), b.get("w", 0)]
+            meta["pivot"] = align_pivot(ti.get("spriteAlignment", 0), ti.get("spritePivot"))
         sprite_meta[key] = meta
     return {"$spr": key}
+
+
+ALIGN = {0: (0.5, 0.5), 1: (0, 1), 2: (0.5, 1), 3: (1, 1), 4: (0, 0.5), 5: (1, 0.5), 6: (0, 0), 7: (0.5, 0), 8: (1, 0)}
+
+
+def align_pivot(alignment, pivot):
+    if alignment in ALIGN:
+        return list(ALIGN[alignment])
+    pivot = pivot or {}
+    return [pivot.get("x", 0.5), pivot.get("y", 0.5)]
 
 
 class SceneConv:
@@ -640,21 +654,27 @@ def phys_material(ref):
     return None
 
 
+def tile_ref(guid, d):
+    c = d.get("m_Color")
+    return {"guid": guid, "sprite": sprite_ref(d.get("m_Sprite")), "collider": d.get("m_ColliderType", 1),
+            "color": col(c) if c else [1, 1, 1, 1], "name": d.get("m_Name", "")}
+
+
 def tilemap_data(d, renderer):
     sprites = [sprite_ref((e or {}).get("m_Data")) for e in d.get("m_TileSpriteArray") or []]
     tiles = []
     for e in d.get("m_TileAssetArray") or []:
         ref = (e or {}).get("m_Data") or {}
-        ctype = 1
+        t = None
         p = uy.guid_path(ref.get("guid")) if ref.get("guid") else None
         if p and p.endswith(".asset"):
             try:
                 a = uy.load_asset(p)
                 if a is not None:
-                    ctype = a.get("m_ColliderType", 1)
+                    t = tile_ref(ref.get("guid"), a)
             except Exception:
                 pass
-        tiles.append(ctype)
+        tiles.append({"$tile": t} if t else None)
     mats = []
     for e in d.get("m_TileMatrixArray") or []:
         m = (e or {}).get("m_Data") or {}
@@ -667,7 +687,7 @@ def tilemap_data(d, renderer):
         cells.append([f.get("x", 0), f.get("y", 0), sd.get("m_TileSpriteIndex", 0), sd.get("m_TileIndex", 0),
                       sd.get("m_TileMatrixIndex", 0), sd.get("m_TileColorIndex", 0)])
     anchor = d.get("m_TileAnchor") or {"x": 0.5, "y": 0.5}
-    out = {"m_Enabled": d.get("m_Enabled", 1), "sprites": sprites, "colliderTypes": tiles, "matrices": mats,
+    out = {"m_Enabled": d.get("m_Enabled", 1), "sprites": sprites, "tiles": tiles, "matrices": mats,
            "colors": cols, "cells": cells, "color": col(d.get("m_Color")), "anchor": [anchor.get("x", 0.5), anchor.get("y", 0.5)]}
     if renderer is not None:
         out["sortingLayer"] = renderer.data.get("m_SortingLayerID", 0)
@@ -786,6 +806,8 @@ def conv_asset_ref(ref):
         sn = uy.script_name(d.get("m_Script"))
         if sn in ("TMP_FontAsset",) or (d.get("m_SourceFontFile") is not None):
             return {"$font": font_ref(guid)}
+        if "m_ColliderType" in d and "m_Sprite" in d:
+            return {"$tile": tile_ref(guid, d)}
         return {"$so": guid}
     if ext == ".asset" or ext == ".mat":
         return None

@@ -10,6 +10,7 @@ var _injected := false
 var _epoch := 0
 var _has_update := false
 var _has_late := false
+var _has_fixed := false
 var u: Dictionary = {}
 
 var enabled: bool:
@@ -104,7 +105,9 @@ func _on_injected(_root: Node) -> void:
 func _ready() -> void:
 	_has_update = has_method("Update")
 	_has_late = has_method("LateUpdate")
+	_has_fixed = has_method("FixedUpdate")
 	set_process(false)
+	set_physics_process(false)
 
 func _sync(parent_on: bool) -> void:
 	if _destroyed:
@@ -121,6 +124,8 @@ func _sync(parent_on: bool) -> void:
 	_active = want
 	if want:
 		set_process(true)
+		if _has_fixed:
+			set_physics_process(true)
 		if _has_late:
 			U.register_late(self)
 		if has_method("OnEnable"):
@@ -128,10 +133,23 @@ func _sync(parent_on: bool) -> void:
 	else:
 		_epoch += 1
 		set_process(false)
+		set_physics_process(false)
 		if _has_late:
 			U.unregister_late(self)
 		if has_method("OnDisable"):
 			call("OnDisable")
+
+func _physics_process(_delta: float) -> void:
+	if not _active:
+		set_physics_process(false)
+		return
+	if not _started:
+		_started = true
+		if has_method("Start"):
+			call("Start")
+		if not _active:
+			return
+	call("FixedUpdate")
 
 func _process(_delta: float) -> void:
 	if not _active:

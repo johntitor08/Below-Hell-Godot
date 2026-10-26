@@ -102,7 +102,7 @@ func mouse_canvas() -> Vector2:
 
 func mousePosition() -> Vector2:
 	var p := _mouse()
-	return Vector2(p.x, REF_H - p.y)
+	return Vector2(p.x, screen_h() - p.y)
 
 func _mouse() -> Vector2:
 	if ES.mouse_override.x >= 0.0:
@@ -110,10 +110,10 @@ func _mouse() -> Vector2:
 	return get_viewport().get_mouse_position()
 
 func to_unity_screen(p: Vector2) -> Vector2:
-	return Vector2(p.x, REF_H - p.y)
+	return Vector2(p.x, screen_h() - p.y)
 
 func from_unity_screen(p: Vector2) -> Vector2:
-	return Vector2(p.x, REF_H - p.y)
+	return Vector2(p.x, screen_h() - p.y)
 
 func register_late(m) -> void:
 	if not _late.has(m):
@@ -632,3 +632,116 @@ func NewGO(n: String, parent_go, cls = UImage, blob := {}):
 		RT.set_anchor_max(go, Vector2(0.5, 0.5))
 		RT.set_size_delta(go, Vector2(100, 100))
 	return go
+
+func pos(go) -> Vector2:
+	go = go_of(go)
+	if go is Node2D:
+		return UPhys.to_unity(go.global_position)
+	if go is Control:
+		return to_unity_screen(go.get_global_transform_with_canvas() * (go.size * Vector2(RT.pivot(go).x, 1.0 - RT.pivot(go).y)))
+	return Vector2.ZERO
+
+func set_pos(go, v: Vector2) -> void:
+	go = go_of(go)
+	if go is URigidbody2D:
+		go.rbPosition = v
+	elif go is Node2D:
+		go.global_position = UPhys.to_godot(v)
+
+func lpos(go) -> Vector2:
+	go = go_of(go)
+	if go is Node2D:
+		return UPhys.to_unity(go.position)
+	return Vector2.ZERO
+
+func set_lpos(go, v: Vector2) -> void:
+	go = go_of(go)
+	if go is Node2D:
+		go.position = UPhys.to_godot(v)
+
+func angle(go) -> float:
+	go = go_of(go)
+	return -rad_to_deg(go.global_rotation) if go is Node2D else 0.0
+
+func set_angle(go, deg: float) -> void:
+	go = go_of(go)
+	if go is Node2D:
+		go.global_rotation = -deg_to_rad(deg)
+
+func langle(go) -> float:
+	go = go_of(go)
+	return -rad_to_deg(go.rotation) if go is Node2D else 0.0
+
+func set_langle(go, deg: float) -> void:
+	go = go_of(go)
+	if go is Node2D:
+		go.rotation = -deg_to_rad(deg)
+
+func right(go) -> Vector2:
+	var a := deg_to_rad(angle(go))
+	var s: Vector2 = go_of(go).global_scale if go_of(go) is Node2D else Vector2.ONE
+	var v := Vector2(cos(a), sin(a))
+	return v if s.x >= 0.0 else -v
+
+func up(go) -> Vector2:
+	var a := deg_to_rad(angle(go) + 90.0)
+	return Vector2(cos(a), sin(a))
+
+func lscale(go) -> Vector2:
+	go = go_of(go)
+	return go.scale if go is CanvasItem and "scale" in go else Vector2.ONE
+
+func set_lscale(go, v: Vector2) -> void:
+	go = go_of(go)
+	if go is Node2D or go is Control:
+		go.scale = v
+
+func translate(go, d: Vector2) -> void:
+	set_pos(go, pos(go) + d)
+
+func move_towards_v(a: Vector2, b: Vector2, max_d: float) -> Vector2:
+	var d := b - a
+	var l := d.length()
+	if l <= max_d or l == 0.0:
+		return b
+	return a + d / l * max_d
+
+func SmoothDamp(cur: float, target: float, vel: Array, smooth: float, dt := -1.0) -> float:
+	if dt < 0.0:
+		dt = deltaTime
+	smooth = maxf(0.0001, smooth)
+	var omega := 2.0 / smooth
+	var x := omega * dt
+	var e := 1.0 / (1.0 + x + 0.48 * x * x + 0.235 * x * x * x)
+	var change := cur - target
+	var temp: float = (float(vel[0]) + omega * change) * dt
+	vel[0] = (vel[0] - omega * temp) * e
+	var out: float = target + (change + temp) * e
+	if (target - cur > 0.0) == (out > target):
+		out = target
+		vel[0] = (out - target) / dt
+	return out
+
+func SmoothDampV(cur: Vector2, target: Vector2, vel: Array, smooth: float, dt := -1.0) -> Vector2:
+	var vx := [vel[0].x]
+	var vy := [vel[0].y]
+	var r := Vector2(SmoothDamp(cur.x, target.x, vx, smooth, dt), SmoothDamp(cur.y, target.y, vy, smooth, dt))
+	vel[0] = Vector2(vx[0], vy[0])
+	return r
+
+func main_camera():
+	for c in get_tree().get_nodes_in_group("u_cameras"):
+		if is_instance_valid(c) and c._active and c.gameObject.get_meta("u_tag", "") == "MainCamera":
+			return c
+	for c in get_tree().get_nodes_in_group("u_cameras"):
+		if is_instance_valid(c) and c._active:
+			return c
+	return null
+
+func screen_h() -> float:
+	var vp := get_viewport()
+	return vp.get_visible_rect().size.y if vp != null else REF_H
+
+func screen_w() -> float:
+	var vp := get_viewport()
+	return vp.get_visible_rect().size.x if vp != null else REF_W

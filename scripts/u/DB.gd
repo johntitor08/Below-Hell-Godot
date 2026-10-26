@@ -133,6 +133,24 @@ func font(info) -> Font:
 	fonts[ttf] = f
 	return f
 
+var tiles: Dictionary = {}
+
+func tile(info) -> UTile:
+	if not (info is Dictionary):
+		return null
+	var g := str(info.get("guid", ""))
+	if tiles.has(g):
+		return tiles[g]
+	var t := UTile.new()
+	t.guid = g
+	t.name = str(info.get("name", ""))
+	t.sprite = conv(info.get("sprite"), null)
+	t.colliderType = int(info.get("collider", 1))
+	var c = info.get("color", [1, 1, 1, 1])
+	t.color = Color(c[0], c[1], c[2], c[3])
+	tiles[g] = t
+	return t
+
 func prefab(info: Dictionary) -> UPrefab:
 	var k := str(info.get("$prefab", "")) + "|" + str(info.get("node", ""))
 	if not prefabs.has(k):
@@ -148,6 +166,8 @@ func conv(v, owner_root: Node):
 			return so_by_guid.get(v["$so"])
 		if v.has("$spr"):
 			return sprite(v["$spr"])
+		if v.has("$tile"):
+			return tile(v["$tile"])
 		if v.has("$tex"):
 			return sprite(v["$tex"])
 		if v.has("$audio"):

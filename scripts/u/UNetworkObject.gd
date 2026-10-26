@@ -1,0 +1,2 @@
+class_name UNetworkObject
+extends Mono
