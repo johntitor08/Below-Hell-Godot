@@ -1,0 +1,1237 @@
+[gd_scene load_steps=21 format=3]
+
+[ext_resource type="Script" path="res://scripts/u/UScene.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/u/UObj.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/u/UCinemachineBrain.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/u/UCamera.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/u/UVirtualCamera.gd" id="5"]
+[ext_resource type="Script" path="res://scripts/u/UImage.gd" id="6"]
+[ext_resource type="Script" path="res://scripts/u/UScrollRect.gd" id="7"]
+[ext_resource type="Script" path="res://scripts/u/UMask.gd" id="8"]
+[ext_resource type="Script" path="res://scripts/u/UText.gd" id="9"]
+[ext_resource type="Script" path="res://scripts/u/UButton.gd" id="10"]
+[ext_resource type="Script" path="res://scripts/u/ULayoutGroup.gd" id="11"]
+[ext_resource type="Script" path="res://scripts/u/UContentSizeFitter.gd" id="12"]
+[ext_resource type="Script" path="res://scripts/u/UArea.gd" id="13"]
+[ext_resource type="Script" path="res://scripts/u/UCollider2D.gd" id="14"]
+[ext_resource type="Script" path="res://scripts/u/UStaticBody.gd" id="15"]
+[ext_resource type="Script" path="res://scripts/u/USpriteRenderer.gd" id="16"]
+[ext_resource type="Script" path="res://scripts/u/UAnimator.gd" id="17"]
+[ext_resource type="Script" path="res://scripts/u/UEffector2D.gd" id="18"]
+[ext_resource type="Script" path="res://scripts/u/UInputField.gd" id="19"]
+[ext_resource type="Script" path="res://scripts/u/ULayoutElement.gd" id="20"]
+
+[node name="MPSVGame" type="Node"]
+script = ExtResource("1")
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("2")
+position = Vector2(945.396, 434.6558)
+visible = true
+metadata/u = "{\"name\":\"GameManager\",\"tag\":\"Untagged\",\"layer\":0}"
+
+[node name="C_MPSVGameManager" type="Node" parent="GameManager"]
+metadata/u = "{\"m_Enabled\":1,\"profilePanel\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel/Profile\"},\"friendListPanel\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel/FriendList\"},\"usernameText\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content/Name\"},\"firstText\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content/First\"},\"genderText\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content/Gender\"},\"tribeNameText\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content/Tribe\"},\"registrationDateText\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content/RegistrationDate\"},\"playerCompletedText\":{\"$n\":\"CanvasMenuPanel/CanvasMenuPanel/MPPanelPlayerCompleted/PlayerCompletedText\"},\"setProfileImageButton\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content/Picture/Button\"},\"panelPlayerList\":{\"$n\":\"CanvasMenuPanel/CanvasMenuPanel/MPPanelPlayerList\"},\"panelOptions\":{\"$n\":\"CanvasMenuPanel/CanvasMenuPanel/MPPanelOptions\"},\"panelPlayerCompleted\":{\"$n\":\"CanvasMenuPanel/CanvasMenuPanel/MPPanelPlayerCompleted\"},\"canvasChat\":{\"$n\":\"CanvasChat/CanvasChat\"},\"messageInputField\":{\"$n\":\"CanvasChat/CanvasChat/InputField (TMP)/C_TMP_InputField\"},\"messageContentObject\":{\"$n\":\"CanvasChat/CanvasChat/Scroll View/Viewport/Content\"},\"isOnInputChatField\":0,\"maps\":[{\"$n\":\"Maps/Map1\"}],\"backgrounds\":[{\"$tex\":\"res://Assets/Painted HQ 2D Forest Medieval Background/day/sky.png\"},{\"$tex\":\"res://Assets/Painted HQ 2D Forest Medieval Background/evening/sky.png\"},{\"$tex\":\"res://Assets/Painted HQ 2D Forest Medieval Background/night/sky.png\"}],\"mountains\":[{\"$tex\":\"res://Assets/Painted HQ 2D Forest Medieval Background/day/mountain01.png\"},{\"$tex\":\"res://Assets/Painted HQ 2D Forest Medieval Background/day/mountain02.png\"},{\"$tex\":\"res://Assets/Painted HQ 2D Forest Medieval Background/evening/mountain01.png\"},{\"$tex\":\"res://Assets/Painted HQ 2D Forest Medieval Background/evening/mountain02.png\"},{\"$tex\":\"res://Assets/Painted HQ 2D Forest Medieval Background/night/mountain01.png\"},{\"$tex\":\"res://Assets/Painted HQ 2D Forest Medieval Background/night/mountain02.png\"}],\"playerNameItemPrefab\":{\"$prefab\":\"res://prefabs/Prefab__Core__PlayerNameItem.tscn\",\"node\":\"C_PlayerNameItem\"},\"playerNameItemContentObject\":{\"$n\":\"CanvasMenuPanel/CanvasMenuPanel/MPPanelPlayerList/Scroll View/Viewport/Content\"},\"mapIndex\":0,\"mapBackground\":0,\"mapMountain\":0,\"elapsedTime\":0,\"isMapCompleted\":0,\"isNewMapLoaded\":0,\"winnerPlayerNickname\":null,\"sendMessageButton\":{\"$n\":\"CanvasChat/CanvasChat/SendMessage/C_Button\"},\"profileItemPrefab\":{\"$prefab\":\"res://prefabs/Prefab__Core__ProfileItem.tscn\",\"node\":\"C_ProfileItem\"},\"profileItemContentObject\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel\"},\"friendItemPrefab\":{\"$prefab\":\"res://prefabs/Prefab__Core__FriendItem.tscn\",\"node\":\"C_FriendItem\"},\"friendItemContentObject\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel/FriendList/Scroll View/Viewport/Content\"},\"slimesDatabase\":{\"$so\":\"8ba6790ed10bb594891092a0b66cc721\"},\"slimesJumpDatabase\":{\"$so\":\"28b5ec1df87f96a4dbc06e45a3d51b43\"},\"slimesFallDatabase\":{\"$so\":\"628d1a11548a9b84b81cc9c9ecddf5a6\"},\"emojis\":[{\"$prefab\":\"res://prefabs/Prefab__Core__Happy.tscn\",\"node\":\".\"},{\"$prefab\":\"res://prefabs/Prefab__Core__Sad.tscn\",\"node\":\".\"},{\"$prefab\":\"res://prefabs/Prefab__Core__Smily.tscn\",\"node\":\".\"},{\"$prefab\":\"res://prefabs/Prefab__Core__Angry.tscn\",\"node\":\".\"},{\"$prefab\":\"res://prefabs/Prefab__Core__Surprised.tscn\",\"node\":\".\"},{\"$prefab\":\"res://prefabs/Prefab__Core__Lovely.tscn\",\"node\":\".\"},{\"$prefab\":\"res://prefabs/Prefab__Core__Cool.tscn\",\"node\":\".\"},{\"$prefab\":\"res://prefabs/Prefab__Core__Therock.tscn\",\"node\":\".\"},{\"$prefab\":\"res://prefabs/Prefab__Core__Hot.tscn\",\"node\":\".\"},{\"$prefab\":\"res://prefabs/Prefab__Core__Demonic.tscn\",\"node\":\".\"}],\"cannonballPrefab\":{\"$prefab\":\"res://prefabs/Prefab__Multiplayer__MPSVCannonball.tscn\",\"node\":\".\"},\"messagePrefab\":{\"$prefab\":\"res://prefabs/Prefab__Core__Message.tscn\",\"node\":\".\"},\"shamanMaterials\":[{\"name\":\"Cannonball\",\"prefab\":{\"$prefab\":\"res://prefabs/Prefab__Multiplayer__MPSVCannonball.tscn\",\"node\":\".\"},\"maxActive\":1,\"cooldown\":3,\"freezeOnPlace\":0},{\"name\":\"Plank\",\"prefab\":{\"$prefab\":\"res://prefabs/Prefab__Multiplayer__ShamanPlank.tscn\",\"node\":\".\"},\"maxActive\":5,\"cooldown\":0.3,\"freezeOnPlace\":1},{\"name\":\"Box\",\"prefab\":{\"$prefab\":\"res://prefabs/Prefab__Multiplayer__ShamanBox.tscn\",\"node\":\".\"},\"maxActive\":5,\"cooldown\":0.3,\"freezeOnPlace\":1}],\"$type\":\"MPSVGameManager\"}"
+
+[node name="C_SetProfileImage" type="Node" parent="GameManager"]
+metadata/u = "{\"m_Enabled\":1,\"profileImage\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content/Picture\"},\"selectText\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content/Picture/Button/Text (TMP)\"},\"$type\":\"SetProfileImage\"}"
+
+[node name="C_SetFirst" type="Node" parent="GameManager"]
+metadata/u = "{\"m_Enabled\":1,\"$type\":\"SetFirst\"}"
+
+[node name="Main Camera" type="Node2D" parent="."]
+script = ExtResource("2")
+visible = true
+metadata/u = "{\"name\":\"Main Camera\",\"tag\":\"MainCamera\",\"layer\":0}"
+
+[node name="C_CinemachineBrain" type="Node" parent="Main Camera"]
+script = ExtResource("3")
+metadata/u = "{\"m_Enabled\":1,\"ShowDebugText\":0,\"ShowCameraFrustum\":1,\"IgnoreTimeScale\":0,\"WorldUpOverride\":null,\"ChannelMask\":-1,\"UpdateMethod\":2,\"BlendUpdateMethod\":1,\"LensModeOverride\":{\"Enabled\":0,\"DefaultMode\":2},\"DefaultBlend\":{\"Style\":1,\"Time\":2,\"CustomCurve\":{\"m_Curve\":[],\"m_PreInfinity\":2,\"m_PostInfinity\":2,\"m_RotationOrder\":4}},\"CustomBlends\":null,\"$type\":\"CinemachineBrain\"}"
+
+[node name="C_Camera" type="Node" parent="Main Camera"]
+script = ExtResource("4")
+metadata/u = "{\"m_Enabled\":1,\"serializedVersion\":2,\"m_ClearFlags\":1,\"m_BackGroundColor\":{\"$c\":[0.20754719,0.20754719,0.20754719,0]},\"m_projectionMatrixMode\":1,\"m_GateFitMode\":2,\"m_FOVAxisMode\":0,\"m_Iso\":200,\"m_ShutterSpeed\":0.005,\"m_Aperture\":16,\"m_FocusDistance\":10,\"m_FocalLength\":50,\"m_BladeCount\":5,\"m_Curvature\":{\"x\":2,\"y\":11},\"m_BarrelClipping\":0.25,\"m_Anamorphism\":0,\"m_SensorSize\":{\"x\":36,\"y\":24},\"m_LensShift\":{\"x\":0,\"y\":0},\"m_NormalizedViewPortRect\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"near clip plane\":0.3,\"far clip plane\":1000,\"field of view\":60,\"orthographic\":1,\"orthographic size\":7,\"m_Depth\":-1,\"m_CullingMask\":{\"m_Bits\":4294967295},\"m_RenderingPath\":-1,\"m_TargetTexture\":null,\"m_TargetDisplay\":0,\"m_TargetEye\":3,\"m_HDR\":1,\"m_AllowMSAA\":1,\"m_AllowDynamicResolution\":0,\"m_ForceIntoRT\":0,\"m_OcclusionCulling\":1,\"m_StereoConvergence\":10,\"m_StereoSeparation\":0.022,\"$type\":\"Camera\"}"
+
+[node name="Virtual Camera" type="Node2D" parent="."]
+script = ExtResource("2")
+visible = true
+metadata/u = "{\"name\":\"Virtual Camera\",\"tag\":\"MainCVC\",\"layer\":0}"
+
+[node name="C_CinemachineVirtualCamera" type="Node" parent="Virtual Camera"]
+script = ExtResource("5")
+metadata/u = "{\"m_Enabled\":1,\"Priority\":{\"Enabled\":0,\"m_Value\":0},\"OutputChannel\":1,\"StandbyUpdate\":2,\"m_StreamingVersion\":20170927,\"m_LegacyPriority\":10,\"m_LookAt\":null,\"m_Follow\":null,\"m_Lens\":{\"FieldOfView\":60,\"OrthographicSize\":7,\"NearClipPlane\":0.3,\"FarClipPlane\":1000,\"Dutch\":0,\"ModeOverride\":0,\"GateFit\":2,\"m_SensorSize\":{\"x\":1,\"y\":1},\"LensShift\":{\"x\":0,\"y\":0},\"FocusDistance\":10,\"Iso\":200,\"ShutterSpeed\":0.005,\"Aperture\":16,\"BladeCount\":5,\"Curvature\":{\"x\":2,\"y\":11},\"BarrelClipping\":0.25,\"Anamorphism\":0},\"BlendHint\":0,\"m_OnCameraLiveEvent\":{\"$event\":[]},\"m_ExcludedPropertiesInInspector\":[\"m_Script\"],\"m_LockStageInInspector\":null,\"m_LegacyTransitions\":{\"m_BlendHint\":0,\"m_InheritPosition\":0,\"m_OnCameraLive\":{\"$event\":[]}},\"m_ComponentOwner\":null,\"$type\":\"CinemachineVirtualCamera\",\"$body\":{\"m_CorrespondingSourceObject\":null,\"m_PrefabInstance\":null,\"m_PrefabAsset\":null,\"m_Enabled\":1,\"m_EditorHideFlags\":0,\"m_Name\":null,\"m_TrackedObjectOffset\":{\"x\":0,\"y\":0,\"z\":0},\"m_LookaheadTime\":0,\"m_LookaheadSmoothing\":0,\"m_LookaheadIgnoreY\":0,\"m_HorizontalDamping\":0.5,\"m_VerticalDamping\":0.5,\"m_ScreenX\":0.5,\"m_ScreenY\":0.5,\"m_DeadZoneWidth\":0,\"m_DeadZoneHeight\":0,\"m_SoftZoneWidth\":0.8,\"m_SoftZoneHeight\":0.8,\"m_BiasX\":0,\"m_BiasY\":0,\"m_CenterOnActivate\":1,\"$type\":\"CinemachineComposer\"}}"
+
+[node name="CanvasGamePanel" type="CanvasLayer" parent="."]
+layer = 1
+metadata/unity_order = 1
+
+[node name="CanvasGamePanel" type="Control" parent="CanvasGamePanel"]
+script = ExtResource("6")
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"canvas\":{\"order\":1,\"override\":false,\"mode\":1},\"name\":\"CanvasGamePanel\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Profile" type="Control" parent="CanvasGamePanel/CanvasGamePanel"]
+script = ExtResource("6")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 0.0
+offset_top = -0.0
+offset_right = 0.0
+offset_bottom = -0.0
+visible = false
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[1,1,1,0.392],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"Profile\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Scroll View" type="Control" parent="CanvasGamePanel/CanvasGamePanel/Profile"]
+script = ExtResource("6")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -450.0
+offset_right = 350.0
+offset_bottom = 450.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[1,1,1,0.392],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"Scroll View\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_ScrollRect" type="Node" parent="CanvasGamePanel/CanvasGamePanel/Profile/Scroll View"]
+script = ExtResource("7")
+metadata/u = "{\"m_Enabled\":1,\"m_Content\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content\"},\"m_Horizontal\":0,\"m_Vertical\":0,\"m_MovementType\":1,\"m_Elasticity\":0.1,\"m_Inertia\":1,\"m_DecelerationRate\":0.135,\"m_ScrollSensitivity\":1,\"m_Viewport\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport\"},\"m_HorizontalScrollbar\":null,\"m_VerticalScrollbar\":null,\"m_HorizontalScrollbarVisibility\":2,\"m_VerticalScrollbarVisibility\":2,\"m_HorizontalScrollbarSpacing\":-3,\"m_VerticalScrollbarSpacing\":-3,\"m_OnValueChanged\":{\"$event\":[]},\"$type\":\"ScrollRect\"}"
+
+[node name="Viewport" type="Control" parent="CanvasGamePanel/CanvasGamePanel/Profile/Scroll View"]
+script = ExtResource("6")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0, 1]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[0,0,0,0],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"Viewport\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_Mask" type="Node" parent="CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport"]
+script = ExtResource("8")
+metadata/u = "{\"m_Enabled\":1,\"m_ShowMaskGraphic\":0,\"$type\":\"Mask\"}"
+
+[node name="Content" type="Control" parent="CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport"]
+script = ExtResource("6")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 0
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 900
+visible = true
+mouse_filter = 2
+metadata/pivot = [0, 1]
+metadata/u = "{\"name\":\"Content\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Name" type="Control" parent="CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content"]
+script = ExtResource("9")
+anchor_left = 0.5
+anchor_top = 0
+anchor_right = 0.5
+anchor_bottom = 0
+offset_left = -350.0
+offset_top = 25.0
+offset_right = 350.0
+offset_bottom = 125.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"Nickname\",\"color\":[0,0,0,1],\"vertexColor\":[1,1,1,1],\"fontSize\":72,\"autoSize\":true,\"minSize\":18,\"maxSize\":72,\"style\":0,\"halign\":2,\"valign\":512,\"wrap\":true,\"overflow\":0,\"margin\":[5,5,5,5],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"Name\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Picture" type="Control" parent="CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content"]
+script = ExtResource("6")
+anchor_left = 0.5
+anchor_top = 0
+anchor_right = 0.5
+anchor_bottom = 0
+offset_left = -200.0
+offset_top = 150.0
+offset_right = 200.0
+offset_bottom = 550.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"raw\":true,\"texture\":null,\"color\":[1,1,1,1],\"type\":0,\"raycastTarget\":true,\"uvRect\":{\"serializedVersion\":2,\"x\":0,\"y\":0,\"width\":1,\"height\":1}},\"name\":\"Picture\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Button" type="Control" parent="CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content/Picture"]
+script = ExtResource("6")
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -125.000002
+offset_top = -27.349991
+offset_right = 124.999998
+offset_bottom = 1.5e-05
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[0,0,0,1],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"Button\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_Button" type="Node" parent="CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content/Picture/Button"]
+script = ExtResource("10")
+metadata/u = "{\"m_Enabled\":1,\"m_Navigation\":{\"m_Mode\":3,\"m_WrapAround\":0,\"m_SelectOnUp\":null,\"m_SelectOnDown\":null,\"m_SelectOnLeft\":null,\"m_SelectOnRight\":null},\"m_Transition\":1,\"m_Colors\":{\"m_NormalColor\":{\"$c\":[1,1,1,1]},\"m_HighlightedColor\":{\"$c\":[1.0,1.0,1.0,1]},\"m_PressedColor\":{\"$c\":[0.75,0.75,0.75,1]},\"m_SelectedColor\":{\"$c\":[0.9607843,0.9607843,0.9607843,1]},\"m_DisabledColor\":{\"$c\":[0.78431374,0.78431374,0.78431374,0.5019608]},\"m_ColorMultiplier\":1,\"m_FadeDuration\":0.1},\"m_SpriteState\":{\"m_HighlightedSprite\":null,\"m_PressedSprite\":null,\"m_SelectedSprite\":null,\"m_DisabledSprite\":null},\"m_AnimationTriggers\":{\"m_NormalTrigger\":\"Normal\",\"m_HighlightedTrigger\":\"Highlighted\",\"m_PressedTrigger\":\"Pressed\",\"m_SelectedTrigger\":\"Selected\",\"m_DisabledTrigger\":\"Disabled\"},\"m_Interactable\":1,\"m_TargetGraphic\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content/Picture/Button\"},\"m_OnClick\":{\"$event\":[{\"target\":{\"$n\":\"GameManager/C_SetProfileImage\"},\"method\":\"SelectProfileImage\",\"mode\":1,\"arg\":null,\"state\":2}]},\"$type\":\"Button\"}"
+
+[node name="Text (TMP)" type="Control" parent="CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content/Picture/Button"]
+script = ExtResource("9")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0.0
+offset_top = -0.0
+offset_right = 0.0
+offset_bottom = -0.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"Click to change image.\",\"color\":[0,0,0,1],\"vertexColor\":[1,1,1,1],\"fontSize\":24.45,\"autoSize\":true,\"minSize\":14,\"maxSize\":40,\"style\":1,\"halign\":2,\"valign\":1024,\"wrap\":false,\"overflow\":0,\"margin\":[0,0,0,0],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"Text (TMP)\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="First" type="Control" parent="CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content"]
+script = ExtResource("9")
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -350.0
+offset_top = -325.0
+offset_right = 350.0
+offset_bottom = -225.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"First: 0\",\"color\":[0,0,0,1],\"vertexColor\":[1,1,1,1],\"fontSize\":72,\"autoSize\":true,\"minSize\":18,\"maxSize\":72,\"style\":0,\"halign\":2,\"valign\":512,\"wrap\":true,\"overflow\":0,\"margin\":[5,5,5,5],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"First\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Gender" type="Control" parent="CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content"]
+script = ExtResource("9")
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -350.0
+offset_top = -225.0
+offset_right = 350.0
+offset_bottom = -150.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"Gender: Non-binary\",\"color\":[0,0,0.8,1],\"vertexColor\":[1,1,1,1],\"fontSize\":58.15,\"autoSize\":true,\"minSize\":18,\"maxSize\":72,\"style\":0,\"halign\":2,\"valign\":512,\"wrap\":true,\"overflow\":0,\"margin\":[5,5,5,5],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"Gender\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Tribe" type="Control" parent="CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content"]
+script = ExtResource("9")
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -350.0
+offset_top = -150.0
+offset_right = 350.0
+offset_bottom = -75.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"Tribe: Tribe Name\",\"color\":[0,0.9,0,1],\"vertexColor\":[1,1,1,1],\"fontSize\":58.15,\"autoSize\":true,\"minSize\":18,\"maxSize\":72,\"style\":0,\"halign\":2,\"valign\":512,\"wrap\":true,\"overflow\":0,\"margin\":[5,5,5,5],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"Tribe\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="RegistrationDate" type="Control" parent="CanvasGamePanel/CanvasGamePanel/Profile/Scroll View/Viewport/Content"]
+script = ExtResource("9")
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -350.0
+offset_top = -75.0
+offset_right = 350.0
+offset_bottom = -0.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"Registration Date: 01/01/0001\",\"color\":[0,0,0,1],\"vertexColor\":[1,1,1,1],\"fontSize\":51.75,\"autoSize\":true,\"minSize\":18,\"maxSize\":72,\"style\":0,\"halign\":2,\"valign\":512,\"wrap\":true,\"overflow\":0,\"margin\":[5,5,5,5],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"RegistrationDate\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="FriendList" type="Control" parent="CanvasGamePanel/CanvasGamePanel"]
+script = ExtResource("6")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 700.0
+offset_top = 100.0
+offset_right = -700.0
+offset_bottom = -100.0
+visible = false
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[0,0,0,0.94],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"FriendList\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Scroll View" type="Control" parent="CanvasGamePanel/CanvasGamePanel/FriendList"]
+script = ExtResource("6")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -259.820671
+offset_top = -440.098657
+offset_right = 259.819329
+offset_bottom = 440.101343
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[1,1,1,0.392],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"Scroll View\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_ScrollRect" type="Node" parent="CanvasGamePanel/CanvasGamePanel/FriendList/Scroll View"]
+script = ExtResource("7")
+metadata/u = "{\"m_Enabled\":1,\"m_Content\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel/FriendList/Scroll View/Viewport/Content\"},\"m_Horizontal\":0,\"m_Vertical\":1,\"m_MovementType\":1,\"m_Elasticity\":0.1,\"m_Inertia\":1,\"m_DecelerationRate\":0.135,\"m_ScrollSensitivity\":1,\"m_Viewport\":{\"$n\":\"CanvasGamePanel/CanvasGamePanel/FriendList/Scroll View/Viewport\"},\"m_HorizontalScrollbar\":null,\"m_VerticalScrollbar\":null,\"m_HorizontalScrollbarVisibility\":2,\"m_VerticalScrollbarVisibility\":2,\"m_HorizontalScrollbarSpacing\":-3,\"m_VerticalScrollbarSpacing\":-3,\"m_OnValueChanged\":{\"$event\":[]},\"$type\":\"ScrollRect\"}"
+
+[node name="Viewport" type="Control" parent="CanvasGamePanel/CanvasGamePanel/FriendList/Scroll View"]
+script = ExtResource("6")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0.0
+offset_top = 0
+offset_right = 6.1e-05
+offset_bottom = 0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0, 1]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[0,0,0,0],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"Viewport\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_Mask" type="Node" parent="CanvasGamePanel/CanvasGamePanel/FriendList/Scroll View/Viewport"]
+script = ExtResource("8")
+metadata/u = "{\"m_Enabled\":1,\"m_ShowMaskGraphic\":0,\"$type\":\"Mask\"}"
+
+[node name="Content" type="Control" parent="CanvasGamePanel/CanvasGamePanel/FriendList/Scroll View/Viewport"]
+script = ExtResource("6")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 0
+offset_left = 0
+offset_top = -1.9e-05
+offset_right = 0
+offset_bottom = 880.199981
+visible = true
+mouse_filter = 2
+metadata/pivot = [0, 1]
+metadata/u = "{\"name\":\"Content\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_VerticalLayoutGroup" type="Node" parent="CanvasGamePanel/CanvasGamePanel/FriendList/Scroll View/Viewport/Content"]
+script = ExtResource("11")
+metadata/u = "{\"m_Enabled\":1,\"m_Padding\":{\"m_Left\":0,\"m_Right\":0,\"m_Top\":0,\"m_Bottom\":0},\"m_ChildAlignment\":0,\"m_Spacing\":0,\"m_ChildForceExpandWidth\":0,\"m_ChildForceExpandHeight\":0,\"m_ChildControlWidth\":0,\"m_ChildControlHeight\":0,\"m_ChildScaleWidth\":0,\"m_ChildScaleHeight\":0,\"m_ReverseArrangement\":0,\"$type\":\"VerticalLayoutGroup\"}"
+
+[node name="Text (TMP)" type="Control" parent="CanvasGamePanel/CanvasGamePanel/FriendList/Scroll View/Viewport/Content"]
+script = ExtResource("9")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0.0
+offset_top = -0.0
+offset_right = 519.64
+offset_bottom = 100.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"Friend List\",\"color\":[0.95,0,0,1],\"vertexColor\":[1,1,1,1],\"fontSize\":72,\"autoSize\":true,\"minSize\":18,\"maxSize\":72,\"style\":1,\"halign\":2,\"valign\":512,\"wrap\":true,\"overflow\":0,\"margin\":[0,0,0,0],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"Text (TMP)\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="CanvasMenuPanel" type="CanvasLayer" parent="."]
+layer = 2
+metadata/unity_order = 2
+
+[node name="CanvasMenuPanel" type="Control" parent="CanvasMenuPanel"]
+script = ExtResource("6")
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"canvas\":{\"order\":2,\"override\":false,\"mode\":1},\"name\":\"CanvasMenuPanel\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="MPPanelOptions" type="Control" parent="CanvasMenuPanel/CanvasMenuPanel"]
+script = ExtResource("6")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -125.0
+offset_right = 250.0
+offset_bottom = 125.0
+visible = false
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[0,0,0,0.94],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"MPPanelOptions\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Text (TMP)" type="Control" parent="CanvasMenuPanel/CanvasMenuPanel/MPPanelOptions"]
+script = ExtResource("9")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = -0.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"Leave the game?\",\"color\":[0,0,0,1],\"vertexColor\":[1,1,1,1],\"fontSize\":51.4,\"autoSize\":true,\"minSize\":18,\"maxSize\":72,\"style\":0,\"halign\":2,\"valign\":512,\"wrap\":true,\"overflow\":0,\"margin\":[0,0,0,0],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"Text (TMP)\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Leave" type="Control" parent="CanvasMenuPanel/CanvasMenuPanel/MPPanelOptions"]
+script = ExtResource("6")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.5
+offset_top = 20.0
+offset_right = -37.5
+offset_bottom = 80.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[0,0,0,1],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"Leave\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_Button" type="Node" parent="CanvasMenuPanel/CanvasMenuPanel/MPPanelOptions/Leave"]
+script = ExtResource("10")
+metadata/u = "{\"m_Enabled\":1,\"m_Navigation\":{\"m_Mode\":3,\"m_WrapAround\":0,\"m_SelectOnUp\":null,\"m_SelectOnDown\":null,\"m_SelectOnLeft\":null,\"m_SelectOnRight\":null},\"m_Transition\":1,\"m_Colors\":{\"m_NormalColor\":{\"$c\":[1,1,1,1]},\"m_HighlightedColor\":{\"$c\":[1.0,1.0,1.0,1]},\"m_PressedColor\":{\"$c\":[0.75,0.75,0.75,1]},\"m_SelectedColor\":{\"$c\":[0.9607843,0.9607843,0.9607843,1]},\"m_DisabledColor\":{\"$c\":[0.78431374,0.78431374,0.78431374,0.5019608]},\"m_ColorMultiplier\":1,\"m_FadeDuration\":0.1},\"m_SpriteState\":{\"m_HighlightedSprite\":null,\"m_PressedSprite\":null,\"m_SelectedSprite\":null,\"m_DisabledSprite\":null},\"m_AnimationTriggers\":{\"m_NormalTrigger\":\"Normal\",\"m_HighlightedTrigger\":\"Highlighted\",\"m_PressedTrigger\":\"Pressed\",\"m_SelectedTrigger\":\"Selected\",\"m_DisabledTrigger\":\"Disabled\"},\"m_Interactable\":1,\"m_TargetGraphic\":{\"$n\":\"CanvasMenuPanel/CanvasMenuPanel/MPPanelOptions/Leave\"},\"m_OnClick\":{\"$event\":[{\"target\":{\"$n\":\"GameManager/C_MPSVGameManager\"},\"method\":\"LeaveRoom\",\"mode\":1,\"arg\":null,\"state\":2}]},\"$type\":\"Button\"}"
+
+[node name="Text (TMP)" type="Control" parent="CanvasMenuPanel/CanvasMenuPanel/MPPanelOptions/Leave"]
+script = ExtResource("9")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 10.574997
+offset_top = -0.0
+offset_right = -8.815003
+offset_bottom = -0.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"Yes\",\"color\":[0,0,0,1],\"vertexColor\":[1,1,1,1],\"fontSize\":53.7,\"autoSize\":true,\"minSize\":14,\"maxSize\":40,\"style\":1,\"halign\":2,\"valign\":512,\"wrap\":true,\"overflow\":0,\"margin\":[0,0,0,0],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"Text (TMP)\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Return" type="Control" parent="CanvasMenuPanel/CanvasMenuPanel/MPPanelOptions"]
+script = ExtResource("6")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 37.5
+offset_top = 20.0
+offset_right = 162.5
+offset_bottom = 80.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[0,0,0,1],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"Return\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_Button" type="Node" parent="CanvasMenuPanel/CanvasMenuPanel/MPPanelOptions/Return"]
+script = ExtResource("10")
+metadata/u = "{\"m_Enabled\":1,\"m_Navigation\":{\"m_Mode\":3,\"m_WrapAround\":0,\"m_SelectOnUp\":null,\"m_SelectOnDown\":null,\"m_SelectOnLeft\":null,\"m_SelectOnRight\":null},\"m_Transition\":1,\"m_Colors\":{\"m_NormalColor\":{\"$c\":[1,1,1,1]},\"m_HighlightedColor\":{\"$c\":[1.0,1.0,1.0,1]},\"m_PressedColor\":{\"$c\":[0.75,0.75,0.75,1]},\"m_SelectedColor\":{\"$c\":[0.9607843,0.9607843,0.9607843,1]},\"m_DisabledColor\":{\"$c\":[0.78431374,0.78431374,0.78431374,0.5019608]},\"m_ColorMultiplier\":1,\"m_FadeDuration\":0.1},\"m_SpriteState\":{\"m_HighlightedSprite\":null,\"m_PressedSprite\":null,\"m_SelectedSprite\":null,\"m_DisabledSprite\":null},\"m_AnimationTriggers\":{\"m_NormalTrigger\":\"Normal\",\"m_HighlightedTrigger\":\"Highlighted\",\"m_PressedTrigger\":\"Pressed\",\"m_SelectedTrigger\":\"Selected\",\"m_DisabledTrigger\":\"Disabled\"},\"m_Interactable\":1,\"m_TargetGraphic\":{\"$n\":\"CanvasMenuPanel/CanvasMenuPanel/MPPanelOptions/Return\"},\"m_OnClick\":{\"$event\":[{\"target\":{\"$n\":\"GameManager/C_MPSVGameManager\"},\"method\":\"ReturnToGame\",\"mode\":1,\"arg\":null,\"state\":2}]},\"$type\":\"Button\"}"
+
+[node name="Text (TMP)" type="Control" parent="CanvasMenuPanel/CanvasMenuPanel/MPPanelOptions/Return"]
+script = ExtResource("9")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 10.574997
+offset_top = -0.0
+offset_right = -8.815003
+offset_bottom = -0.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"No\",\"color\":[0,0,0,1],\"vertexColor\":[1,1,1,1],\"fontSize\":53.7,\"autoSize\":true,\"minSize\":14,\"maxSize\":40,\"style\":1,\"halign\":2,\"valign\":512,\"wrap\":true,\"overflow\":0,\"margin\":[0,0,0,0],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"Text (TMP)\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="MPPanelPlayerList" type="Control" parent="CanvasMenuPanel/CanvasMenuPanel"]
+script = ExtResource("6")
+anchor_left = 1
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 0
+offset_left = -340.82996
+offset_top = -0.0
+offset_right = 0.0
+offset_bottom = 399.90002
+visible = false
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[0,0,0,0.94],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"MPPanelPlayerList\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Scroll View" type="Control" parent="CanvasMenuPanel/CanvasMenuPanel/MPPanelPlayerList"]
+script = ExtResource("6")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.415494
+offset_top = -199.949992
+offset_right = 170.414506
+offset_bottom = 199.950008
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[1,1,1,0.392],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"Scroll View\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_ScrollRect" type="Node" parent="CanvasMenuPanel/CanvasMenuPanel/MPPanelPlayerList/Scroll View"]
+script = ExtResource("7")
+metadata/u = "{\"m_Enabled\":1,\"m_Content\":{\"$n\":\"CanvasMenuPanel/CanvasMenuPanel/MPPanelPlayerList/Scroll View/Viewport/Content\"},\"m_Horizontal\":0,\"m_Vertical\":0,\"m_MovementType\":1,\"m_Elasticity\":0.1,\"m_Inertia\":1,\"m_DecelerationRate\":0.135,\"m_ScrollSensitivity\":1,\"m_Viewport\":{\"$n\":\"CanvasMenuPanel/CanvasMenuPanel/MPPanelPlayerList/Scroll View/Viewport\"},\"m_HorizontalScrollbar\":null,\"m_VerticalScrollbar\":null,\"m_HorizontalScrollbarVisibility\":2,\"m_VerticalScrollbarVisibility\":2,\"m_HorizontalScrollbarSpacing\":-3,\"m_VerticalScrollbarSpacing\":-3,\"m_OnValueChanged\":{\"$event\":[]},\"$type\":\"ScrollRect\"}"
+
+[node name="Viewport" type="Control" parent="CanvasMenuPanel/CanvasMenuPanel/MPPanelPlayerList/Scroll View"]
+script = ExtResource("6")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0.0
+offset_top = 0
+offset_right = -3.1e-05
+offset_bottom = 0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0, 1]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[0,0,0,0],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"Viewport\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_Mask" type="Node" parent="CanvasMenuPanel/CanvasMenuPanel/MPPanelPlayerList/Scroll View/Viewport"]
+script = ExtResource("8")
+metadata/u = "{\"m_Enabled\":1,\"m_ShowMaskGraphic\":0,\"$type\":\"Mask\"}"
+
+[node name="Content" type="Control" parent="CanvasMenuPanel/CanvasMenuPanel/MPPanelPlayerList/Scroll View/Viewport"]
+script = ExtResource("6")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 0
+offset_left = 1.3e-05
+offset_top = 0.000183
+offset_right = 1.3e-05
+offset_bottom = 399.900183
+visible = true
+mouse_filter = 2
+metadata/pivot = [0, 1]
+metadata/u = "{\"name\":\"Content\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_VerticalLayoutGroup" type="Node" parent="CanvasMenuPanel/CanvasMenuPanel/MPPanelPlayerList/Scroll View/Viewport/Content"]
+script = ExtResource("11")
+metadata/u = "{\"m_Enabled\":1,\"m_Padding\":{\"m_Left\":0,\"m_Right\":0,\"m_Top\":0,\"m_Bottom\":0},\"m_ChildAlignment\":0,\"m_Spacing\":0,\"m_ChildForceExpandWidth\":0,\"m_ChildForceExpandHeight\":0,\"m_ChildControlWidth\":0,\"m_ChildControlHeight\":0,\"m_ChildScaleWidth\":0,\"m_ChildScaleHeight\":0,\"m_ReverseArrangement\":0,\"$type\":\"VerticalLayoutGroup\"}"
+
+[node name="C_ContentSizeFitter" type="Node" parent="CanvasMenuPanel/CanvasMenuPanel/MPPanelPlayerList/Scroll View/Viewport/Content"]
+script = ExtResource("12")
+metadata/u = "{\"m_Enabled\":1,\"m_HorizontalFit\":2,\"m_VerticalFit\":0,\"$type\":\"ContentSizeFitter\"}"
+
+[node name="MPPanelPlayerCompleted" type="Control" parent="CanvasMenuPanel/CanvasMenuPanel"]
+script = ExtResource("6")
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -360.0
+offset_top = -120.0
+offset_right = 360.0
+offset_bottom = -0.0
+visible = false
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[0,0,0,0.94],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"MPPanelPlayerCompleted\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="PlayerCompletedText" type="Control" parent="CanvasMenuPanel/CanvasMenuPanel/MPPanelPlayerCompleted"]
+script = ExtResource("9")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -60.0
+offset_right = 360.0
+offset_bottom = 60.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"Player completed the map in x seconds.\",\"color\":[0,0,0,1],\"vertexColor\":[1,1,1,1],\"fontSize\":52.9,\"autoSize\":true,\"minSize\":18,\"maxSize\":72,\"style\":0,\"halign\":2,\"valign\":512,\"wrap\":true,\"overflow\":0,\"margin\":[0,0,0,0],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"PlayerCompletedText\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="CanvasBackground" type="CanvasLayer" parent="."]
+layer = -1
+metadata/unity_order = -1
+
+[node name="CanvasBackground" type="Control" parent="CanvasBackground"]
+script = ExtResource("6")
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"canvas\":{\"order\":-1,\"override\":false,\"mode\":1},\"name\":\"CanvasBackground\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Background" type="Control" parent="CanvasBackground/CanvasBackground"]
+script = ExtResource("6")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -959.85
+offset_top = -540.1
+offset_right = 959.85
+offset_bottom = 540.1
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"raw\":true,\"texture\":null,\"color\":[1,1,1,1],\"type\":0,\"raycastTarget\":true,\"uvRect\":{\"serializedVersion\":2,\"x\":0,\"y\":0,\"width\":1,\"height\":1}},\"name\":\"Background\",\"tag\":\"Background\",\"layer\":5}"
+
+[node name="Mountain" type="Control" parent="CanvasBackground/CanvasBackground"]
+script = ExtResource("6")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -959.846601
+offset_top = 181.91
+offset_right = 959.853399
+offset_bottom = 540.09
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"raw\":true,\"texture\":null,\"color\":[1,1,1,1],\"type\":0,\"raycastTarget\":true,\"uvRect\":{\"serializedVersion\":2,\"x\":0,\"y\":0,\"width\":1,\"height\":1}},\"name\":\"Mountain\",\"tag\":\"Mountain\",\"layer\":5}"
+
+[node name="EventSystem" type="Node2D" parent="."]
+script = ExtResource("2")
+visible = true
+metadata/u = "{\"name\":\"EventSystem\",\"tag\":\"Untagged\",\"layer\":0}"
+
+[node name="Spawner" type="Area2D" parent="."]
+script = ExtResource("13")
+position = Vector2(4538.423, 690.0)
+visible = true
+metadata/u = "{\"name\":\"Spawner\",\"tag\":\"Untagged\",\"layer\":0}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Spawner"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"serializedVersion\":3,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":1,\"m_UsedByEffector\":0,\"m_CompositeOperation\":0,\"m_CompositeOrder\":0,\"m_Offset\":{\"x\":123.895386,\"y\":-32.181736},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0,\"y\":0},\"oldSize\":{\"x\":0,\"y\":0},\"newSize\":{\"x\":0,\"y\":0},\"adaptiveTilingThreshold\":0,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"m_Size\":{\"x\":1078.8503,\"y\":54.725716},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="Maps" type="Node2D" parent="."]
+script = ExtResource("2")
+position = Vector2(4538.423, -950.2303)
+visible = true
+metadata/u = "{\"name\":\"Maps\",\"tag\":\"Untagged\",\"layer\":0}"
+
+[node name="Map1" type="Node2D" parent="Maps"]
+script = ExtResource("2")
+visible = false
+metadata/u = "{\"name\":\"Map1\",\"tag\":\"Untagged\",\"layer\":0}"
+
+[node name="Blocks" type="Node2D" parent="Maps/Map1"]
+script = ExtResource("2")
+position = Vector2(7726.85, -4090.5727)
+visible = true
+metadata/u = "{\"name\":\"Blocks\",\"tag\":\"Untagged\",\"layer\":0}"
+
+[node name="Ground" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(-12200.0, 5200.0)
+scale = Vector2(5.0, 1.0)
+visible = true
+metadata/u = "{\"name\":\"Ground\",\"tag\":\"Untagged\",\"layer\":6}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/Ground"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png#Square\"},\"m_Color\":{\"$c\":[1,1,1,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Maps/Map1/Blocks/Ground"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0.5,\"y\":0.5},\"oldSize\":{\"x\":1,\"y\":1},\"newSize\":{\"x\":1,\"y\":1},\"adaptiveTilingThreshold\":0.5,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":1,\"y\":1},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="CornerPoints" type="StaticBody2D" parent="Maps/Map1/Blocks/Ground"]
+script = ExtResource("15")
+scale = Vector2(0.2, 1.0)
+visible = true
+metadata/u = "{\"name\":\"CornerPoints\",\"tag\":\"Untagged\",\"layer\":0}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Maps/Map1/Blocks/Ground/CornerPoints"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":-2.4617443,\"y\":0.44798762},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0,\"y\":0},\"oldSize\":{\"x\":0,\"y\":0},\"newSize\":{\"x\":0,\"y\":0},\"adaptiveTilingThreshold\":0,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":0.07386017,\"y\":0.10402477},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="C_BoxCollider2D_2" type="Node" parent="Maps/Map1/Blocks/Ground/CornerPoints"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":2.4652123,\"y\":0.45387733},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0,\"y\":0},\"oldSize\":{\"x\":0,\"y\":0},\"newSize\":{\"x\":0,\"y\":0},\"adaptiveTilingThreshold\":0,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":0.06932545,\"y\":0.09224534},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="MovingGround" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(-11430.2734, 5000.0)
+rotation = -0.388037
+scale = Vector2(5.0, 1.0)
+visible = true
+metadata/u = "{\"name\":\"MovingGround\",\"tag\":\"Untagged\",\"layer\":6}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/MovingGround"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png#Square\"},\"m_Color\":{\"$c\":[1,1,1,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Maps/Map1/Blocks/MovingGround"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0.5,\"y\":0.5},\"oldSize\":{\"x\":1,\"y\":1},\"newSize\":{\"x\":1,\"y\":1},\"adaptiveTilingThreshold\":0.5,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":1,\"y\":1},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="C_MoveableObject" type="Node" parent="Maps/Map1/Blocks/MovingGround"]
+metadata/u = "{\"m_Enabled\":1,\"movementSpeed\":5,\"distance\":15,\"isMovingRight\":1,\"$type\":\"MoveableObject\"}"
+
+[node name="CornerPoints" type="StaticBody2D" parent="Maps/Map1/Blocks/MovingGround"]
+script = ExtResource("15")
+scale = Vector2(0.2, 1.0)
+visible = true
+metadata/u = "{\"name\":\"CornerPoints\",\"tag\":\"Untagged\",\"layer\":0}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Maps/Map1/Blocks/MovingGround/CornerPoints"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":-2.4617443,\"y\":0.44798762},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0,\"y\":0},\"oldSize\":{\"x\":0,\"y\":0},\"newSize\":{\"x\":0,\"y\":0},\"adaptiveTilingThreshold\":0,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":0.07386017,\"y\":0.10402477},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="C_BoxCollider2D_2" type="Node" parent="Maps/Map1/Blocks/MovingGround/CornerPoints"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":2.4652123,\"y\":0.45387733},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0,\"y\":0},\"oldSize\":{\"x\":0,\"y\":0},\"newSize\":{\"x\":0,\"y\":0},\"adaptiveTilingThreshold\":0,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":0.06932545,\"y\":0.09224534},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="Wall" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(-9500.0, 3900.0)
+rotation = -1.570796
+scale = Vector2(5.0, 1.0)
+visible = true
+metadata/u = "{\"name\":\"Wall\",\"tag\":\"Untagged\",\"layer\":7}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/Wall"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png#Square\"},\"m_Color\":{\"$c\":[1,1,1,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Maps/Map1/Blocks/Wall"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0.5,\"y\":0.5},\"oldSize\":{\"x\":1,\"y\":1},\"newSize\":{\"x\":1,\"y\":1},\"adaptiveTilingThreshold\":0.5,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":1,\"y\":1},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="Trampoline" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(-8800.0, 3500.0)
+scale = Vector2(3.0, 1.0)
+visible = true
+metadata/u = "{\"name\":\"Trampoline\",\"tag\":\"Untagged\",\"layer\":9}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/Trampoline"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/9Sliced.png#9-Sliced\"},\"m_Color\":{\"$c\":[0.60039973,0.0658597,0.9433962,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_PolygonCollider2D" type="Node" parent="Maps/Map1/Blocks/Trampoline"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0.25,\"y\":0.25,\"z\":0.25,\"w\":0.25},\"pivot\":{\"x\":0.5,\"y\":0.5},\"oldSize\":{\"x\":1,\"y\":1},\"newSize\":{\"x\":1,\"y\":1},\"adaptiveTilingThreshold\":0.5,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"m_Points\":{\"m_Paths\":[[{\"x\":0.4921875,\"y\":0.28515625},{\"x\":0.46875,\"y\":0.359375},{\"x\":0.421875,\"y\":0.421875},{\"x\":0.359375,\"y\":0.46875},{\"x\":0.28515625,\"y\":0.4921875},{\"x\":-0.28515625,\"y\":0.4921875},{\"x\":-0.359375,\"y\":0.46875},{\"x\":-0.421875,\"y\":0.421875},{\"x\":-0.46875,\"y\":0.359375},{\"x\":-0.4921875,\"y\":0.28515625},{\"x\":-0.4921875,\"y\":-0.28515625},{\"x\":-0.46875,\"y\":-0.359375},{\"x\":-0.421875,\"y\":-0.421875},{\"x\":-0.359375,\"y\":-0.46875},{\"x\":-0.28515625,\"y\":-0.4921875},{\"x\":0.28515625,\"y\":-0.4921875},{\"x\":0.359375,\"y\":-0.46875},{\"x\":0.421875,\"y\":-0.421875},{\"x\":0.46875,\"y\":-0.359375},{\"x\":0.4921875,\"y\":-0.28515625}]]},\"m_UseDelaunayMesh\":0,\"$type\":\"PolygonCollider2D\",\"$body\":\"self\"}"
+
+[node name="Trampoline (1)" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(-7900.0, 3100.0)
+scale = Vector2(3.0, 1.0)
+visible = true
+metadata/u = "{\"name\":\"Trampoline (1)\",\"tag\":\"Untagged\",\"layer\":9}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/Trampoline (1)"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/9Sliced.png#9-Sliced\"},\"m_Color\":{\"$c\":[0.60039973,0.0658597,0.9433962,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_PolygonCollider2D" type="Node" parent="Maps/Map1/Blocks/Trampoline (1)"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0.25,\"y\":0.25,\"z\":0.25,\"w\":0.25},\"pivot\":{\"x\":0.5,\"y\":0.5},\"oldSize\":{\"x\":1,\"y\":1},\"newSize\":{\"x\":1,\"y\":1},\"adaptiveTilingThreshold\":0.5,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"m_Points\":{\"m_Paths\":[[{\"x\":0.4921875,\"y\":0.28515625},{\"x\":0.46875,\"y\":0.359375},{\"x\":0.421875,\"y\":0.421875},{\"x\":0.359375,\"y\":0.46875},{\"x\":0.28515625,\"y\":0.4921875},{\"x\":-0.28515625,\"y\":0.4921875},{\"x\":-0.359375,\"y\":0.46875},{\"x\":-0.421875,\"y\":0.421875},{\"x\":-0.46875,\"y\":0.359375},{\"x\":-0.4921875,\"y\":0.28515625},{\"x\":-0.4921875,\"y\":-0.28515625},{\"x\":-0.46875,\"y\":-0.359375},{\"x\":-0.421875,\"y\":-0.421875},{\"x\":-0.359375,\"y\":-0.46875},{\"x\":-0.28515625,\"y\":-0.4921875},{\"x\":0.28515625,\"y\":-0.4921875},{\"x\":0.359375,\"y\":-0.46875},{\"x\":0.421875,\"y\":-0.421875},{\"x\":0.46875,\"y\":-0.359375},{\"x\":0.4921875,\"y\":-0.28515625}]]},\"m_UseDelaunayMesh\":0,\"$type\":\"PolygonCollider2D\",\"$body\":\"self\"}"
+
+[node name="Trampoline (2)" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(-7100.0, 2600.0)
+scale = Vector2(3.0, 1.0)
+visible = true
+metadata/u = "{\"name\":\"Trampoline (2)\",\"tag\":\"Untagged\",\"layer\":9}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/Trampoline (2)"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/9Sliced.png#9-Sliced\"},\"m_Color\":{\"$c\":[0.60039973,0.0658597,0.9433962,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_PolygonCollider2D" type="Node" parent="Maps/Map1/Blocks/Trampoline (2)"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0.25,\"y\":0.25,\"z\":0.25,\"w\":0.25},\"pivot\":{\"x\":0.5,\"y\":0.5},\"oldSize\":{\"x\":1,\"y\":1},\"newSize\":{\"x\":1,\"y\":1},\"adaptiveTilingThreshold\":0.5,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"m_Points\":{\"m_Paths\":[[{\"x\":0.4921875,\"y\":0.28515625},{\"x\":0.46875,\"y\":0.359375},{\"x\":0.421875,\"y\":0.421875},{\"x\":0.359375,\"y\":0.46875},{\"x\":0.28515625,\"y\":0.4921875},{\"x\":-0.28515625,\"y\":0.4921875},{\"x\":-0.359375,\"y\":0.46875},{\"x\":-0.421875,\"y\":0.421875},{\"x\":-0.46875,\"y\":0.359375},{\"x\":-0.4921875,\"y\":0.28515625},{\"x\":-0.4921875,\"y\":-0.28515625},{\"x\":-0.46875,\"y\":-0.359375},{\"x\":-0.421875,\"y\":-0.421875},{\"x\":-0.359375,\"y\":-0.46875},{\"x\":-0.28515625,\"y\":-0.4921875},{\"x\":0.28515625,\"y\":-0.4921875},{\"x\":0.359375,\"y\":-0.46875},{\"x\":0.421875,\"y\":-0.421875},{\"x\":0.46875,\"y\":-0.359375},{\"x\":0.4921875,\"y\":-0.28515625}]]},\"m_UseDelaunayMesh\":0,\"$type\":\"PolygonCollider2D\",\"$body\":\"self\"}"
+
+[node name="Lava" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(-5672.78, 2539.9788)
+scale = Vector2(14.0, 1.0)
+visible = true
+metadata/u = "{\"name\":\"Lava\",\"tag\":\"Barrier\",\"layer\":0}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/Lava"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Square.png#Square\"},\"m_Color\":{\"$c\":[0.9528302,0.0934852,0.0934852,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Maps/Map1/Blocks/Lava"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0.5,\"y\":0.5},\"oldSize\":{\"x\":1,\"y\":1},\"newSize\":{\"x\":1,\"y\":1},\"adaptiveTilingThreshold\":0.5,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":1,\"y\":1},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="Water" type="Area2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("13")
+position = Vector2(-5600.0, 2400.0)
+scale = Vector2(11.0, 1.0)
+visible = true
+metadata/u = "{\"name\":\"Water\",\"tag\":\"Untagged\",\"layer\":4}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/Water"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Assets/Sprite/Water/1-1x.png\"},\"m_Color\":{\"$c\":[1,1,1,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1.28,\"y\":1.28},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_Animator" type="Node" parent="Maps/Map1/Blocks/Water"]
+script = ExtResource("17")
+metadata/u = "{\"serializedVersion\":5,\"m_Enabled\":1,\"m_Avatar\":null,\"m_Controller\":null,\"m_CullingMode\":0,\"m_UpdateMode\":0,\"m_ApplyRootMotion\":0,\"m_LinearVelocityBlending\":0,\"m_StabilizeFeet\":0,\"m_WarningMessage\":null,\"m_HasTransformHierarchy\":1,\"m_AllowConstantClipSamplingOptimization\":1,\"m_KeepAnimatorStateOnDisable\":0,\"m_WriteDefaultValuesOnDisable\":0,\"$type\":\"Animator\",\"$anim\":{\"default\":\"water\",\"states\":{\"water\":{\"clip\":{\"length\":1.3333334,\"loop\":true,\"curves\":[]},\"transitions\":[]}},\"any\":[],\"params\":[]}}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Maps/Map1/Blocks/Water"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":1,\"m_UsedByEffector\":1,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0.5,\"y\":0.5},\"oldSize\":{\"x\":1.28,\"y\":1.28},\"newSize\":{\"x\":1.28,\"y\":1.28},\"adaptiveTilingThreshold\":0.5,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":1.28,\"y\":1.28},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="C_BuoyancyEffector2D" type="Node" parent="Maps/Map1/Blocks/Water"]
+script = ExtResource("18")
+metadata/u = "{\"m_Enabled\":1,\"m_UseColliderMask\":1,\"m_ColliderMask\":{\"m_Bits\":4294967295},\"m_SurfaceLevel\":2,\"m_Density\":4,\"m_LinearDrag\":5,\"m_AngularDrag\":5,\"m_FlowAngle\":0,\"m_FlowMagnitude\":0,\"m_FlowVariation\":0,\"$type\":\"BuoyancyEffector2D\"}"
+
+[node name="CircularTrampoline" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(-4300.0, 2600.0)
+visible = true
+metadata/u = "{\"name\":\"CircularTrampoline\",\"tag\":\"Untagged\",\"layer\":9}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/CircularTrampoline"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Circle.png#Circle\"},\"m_Color\":{\"$c\":[0.60039973,0.0658597,0.9433962,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_CircleCollider2D" type="Node" parent="Maps/Map1/Blocks/CircularTrampoline"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"serializedVersion\":2,\"m_Radius\":0.5,\"$type\":\"CircleCollider2D\",\"$body\":\"self\"}"
+
+[node name="CircularTrampoline (1)" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(-3500.0, 2400.0)
+visible = true
+metadata/u = "{\"name\":\"CircularTrampoline (1)\",\"tag\":\"Untagged\",\"layer\":9}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/CircularTrampoline (1)"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Circle.png#Circle\"},\"m_Color\":{\"$c\":[0.60039973,0.0658597,0.9433962,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_CircleCollider2D" type="Node" parent="Maps/Map1/Blocks/CircularTrampoline (1)"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"serializedVersion\":2,\"m_Radius\":0.5,\"$type\":\"CircleCollider2D\",\"$body\":\"self\"}"
+
+[node name="CircularTrampoline (2)" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(-2900.0, 2600.0)
+visible = true
+metadata/u = "{\"name\":\"CircularTrampoline (2)\",\"tag\":\"Untagged\",\"layer\":9}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/CircularTrampoline (2)"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Circle.png#Circle\"},\"m_Color\":{\"$c\":[0.60039973,0.0658597,0.9433962,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_CircleCollider2D" type="Node" parent="Maps/Map1/Blocks/CircularTrampoline (2)"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"serializedVersion\":2,\"m_Radius\":0.5,\"$type\":\"CircleCollider2D\",\"$body\":\"self\"}"
+
+[node name="CircularTrampoline (3)" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(-2200.0, 2300.0)
+visible = true
+metadata/u = "{\"name\":\"CircularTrampoline (3)\",\"tag\":\"Untagged\",\"layer\":9}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/CircularTrampoline (3)"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Circle.png#Circle\"},\"m_Color\":{\"$c\":[0.60039973,0.0658597,0.9433962,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_CircleCollider2D" type="Node" parent="Maps/Map1/Blocks/CircularTrampoline (3)"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"serializedVersion\":2,\"m_Radius\":0.5,\"$type\":\"CircleCollider2D\",\"$body\":\"self\"}"
+
+[node name="CircularTrampoline (4)" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(-1500.0, 2700.0)
+visible = true
+metadata/u = "{\"name\":\"CircularTrampoline (4)\",\"tag\":\"Untagged\",\"layer\":9}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/CircularTrampoline (4)"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Circle.png#Circle\"},\"m_Color\":{\"$c\":[0.60039973,0.0658597,0.9433962,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_CircleCollider2D" type="Node" parent="Maps/Map1/Blocks/CircularTrampoline (4)"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"serializedVersion\":2,\"m_Radius\":0.5,\"$type\":\"CircleCollider2D\",\"$body\":\"self\"}"
+
+[node name="Ground (1)" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(-600.0, 2400.0)
+scale = Vector2(5.0, 1.0)
+visible = true
+metadata/u = "{\"name\":\"Ground (1)\",\"tag\":\"Untagged\",\"layer\":6}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/Ground (1)"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png#Square\"},\"m_Color\":{\"$c\":[1,1,1,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Maps/Map1/Blocks/Ground (1)"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0.5,\"y\":0.5},\"oldSize\":{\"x\":1,\"y\":1},\"newSize\":{\"x\":1,\"y\":1},\"adaptiveTilingThreshold\":0.5,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":1,\"y\":1},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="CornerPoints" type="StaticBody2D" parent="Maps/Map1/Blocks/Ground (1)"]
+script = ExtResource("15")
+scale = Vector2(0.2, 1.0)
+visible = true
+metadata/u = "{\"name\":\"CornerPoints\",\"tag\":\"Untagged\",\"layer\":0}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Maps/Map1/Blocks/Ground (1)/CornerPoints"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":-2.4617443,\"y\":0.44798762},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0,\"y\":0},\"oldSize\":{\"x\":0,\"y\":0},\"newSize\":{\"x\":0,\"y\":0},\"adaptiveTilingThreshold\":0,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":0.07386017,\"y\":0.10402477},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="C_BoxCollider2D_2" type="Node" parent="Maps/Map1/Blocks/Ground (1)/CornerPoints"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":2.4652123,\"y\":0.45387733},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0,\"y\":0},\"oldSize\":{\"x\":0,\"y\":0},\"newSize\":{\"x\":0,\"y\":0},\"adaptiveTilingThreshold\":0,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":0.06932545,\"y\":0.09224534},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="Wall (1)" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(-300.0, 1500.0)
+rotation = -1.570796
+scale = Vector2(5.0, 1.0)
+visible = true
+metadata/u = "{\"name\":\"Wall (1)\",\"tag\":\"Untagged\",\"layer\":7}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/Wall (1)"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png#Square\"},\"m_Color\":{\"$c\":[1,1,1,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Maps/Map1/Blocks/Wall (1)"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0.5,\"y\":0.5},\"oldSize\":{\"x\":1,\"y\":1},\"newSize\":{\"x\":1,\"y\":1},\"adaptiveTilingThreshold\":0.5,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":1,\"y\":1},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="Wall (4)" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(-300.0, 300.0)
+rotation = -1.570796
+scale = Vector2(5.0, 1.0)
+visible = true
+metadata/u = "{\"name\":\"Wall (4)\",\"tag\":\"Untagged\",\"layer\":7}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/Wall (4)"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png#Square\"},\"m_Color\":{\"$c\":[1,1,1,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Maps/Map1/Blocks/Wall (4)"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0.5,\"y\":0.5},\"oldSize\":{\"x\":1,\"y\":1},\"newSize\":{\"x\":1,\"y\":1},\"adaptiveTilingThreshold\":0.5,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":1,\"y\":1},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="Wall (2)" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(100.0, 2000.0)
+rotation = -1.570796
+scale = Vector2(5.0, 1.0)
+visible = true
+metadata/u = "{\"name\":\"Wall (2)\",\"tag\":\"Untagged\",\"layer\":7}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/Wall (2)"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png#Square\"},\"m_Color\":{\"$c\":[1,1,1,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Maps/Map1/Blocks/Wall (2)"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0.5,\"y\":0.5},\"oldSize\":{\"x\":1,\"y\":1},\"newSize\":{\"x\":1,\"y\":1},\"adaptiveTilingThreshold\":0.5,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":1,\"y\":1},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="Wall (3)" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(100.0, 900.0)
+rotation = -1.570796
+scale = Vector2(5.0, 1.0)
+visible = true
+metadata/u = "{\"name\":\"Wall (3)\",\"tag\":\"Untagged\",\"layer\":7}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/Wall (3)"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png#Square\"},\"m_Color\":{\"$c\":[1,1,1,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Maps/Map1/Blocks/Wall (3)"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0.5,\"y\":0.5},\"oldSize\":{\"x\":1,\"y\":1},\"newSize\":{\"x\":1,\"y\":1},\"adaptiveTilingThreshold\":0.5,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":1,\"y\":1},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="Wall (5)" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(100.0, -300.0)
+rotation = -1.570796
+scale = Vector2(5.0, 1.0)
+visible = true
+metadata/u = "{\"name\":\"Wall (5)\",\"tag\":\"Untagged\",\"layer\":7}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/Wall (5)"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png#Square\"},\"m_Color\":{\"$c\":[1,1,1,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Maps/Map1/Blocks/Wall (5)"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0.5,\"y\":0.5},\"oldSize\":{\"x\":1,\"y\":1},\"newSize\":{\"x\":1,\"y\":1},\"adaptiveTilingThreshold\":0.5,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":1,\"y\":1},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="MovingGround_2" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(824.7261, -600.0)
+scale = Vector2(5.0, 1.0)
+visible = true
+metadata/u = "{\"name\":\"MovingGround\",\"tag\":\"Untagged\",\"layer\":6}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/MovingGround_2"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png#Square\"},\"m_Color\":{\"$c\":[1,1,1,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Maps/Map1/Blocks/MovingGround_2"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0.5,\"y\":0.5},\"oldSize\":{\"x\":1,\"y\":1},\"newSize\":{\"x\":1,\"y\":1},\"adaptiveTilingThreshold\":0.5,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":1,\"y\":1},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="C_MoveableObject" type="Node" parent="Maps/Map1/Blocks/MovingGround_2"]
+metadata/u = "{\"m_Enabled\":1,\"movementSpeed\":5,\"distance\":15,\"isMovingRight\":1,\"$type\":\"MoveableObject\"}"
+
+[node name="CornerPoints" type="StaticBody2D" parent="Maps/Map1/Blocks/MovingGround_2"]
+script = ExtResource("15")
+scale = Vector2(0.2, 1.0)
+visible = true
+metadata/u = "{\"name\":\"CornerPoints\",\"tag\":\"Untagged\",\"layer\":0}"
+
+[node name="C_BoxCollider2D" type="Node" parent="Maps/Map1/Blocks/MovingGround_2/CornerPoints"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":-2.4617443,\"y\":0.44798762},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0,\"y\":0},\"oldSize\":{\"x\":0,\"y\":0},\"newSize\":{\"x\":0,\"y\":0},\"adaptiveTilingThreshold\":0,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":0.07386017,\"y\":0.10402477},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="C_BoxCollider2D_2" type="Node" parent="Maps/Map1/Blocks/MovingGround_2/CornerPoints"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":2.4652123,\"y\":0.45387733},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0,\"y\":0,\"z\":0,\"w\":0},\"pivot\":{\"x\":0,\"y\":0},\"oldSize\":{\"x\":0,\"y\":0},\"newSize\":{\"x\":0,\"y\":0},\"adaptiveTilingThreshold\":0,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"serializedVersion\":2,\"m_Size\":{\"x\":0.06932545,\"y\":0.09224534},\"m_EdgeRadius\":0,\"$type\":\"BoxCollider2D\",\"$body\":\"self\"}"
+
+[node name="Finish" type="StaticBody2D" parent="Maps/Map1/Blocks"]
+script = ExtResource("15")
+position = Vector2(3239.0, -633.2531)
+scale = Vector2(5.0, 1.0)
+visible = true
+metadata/u = "{\"name\":\"Finish\",\"tag\":\"Untagged\",\"layer\":10}"
+
+[node name="C_SpriteRenderer" type="Node" parent="Maps/Map1/Blocks/Finish"]
+script = ExtResource("16")
+metadata/u = "{\"m_Enabled\":1,\"m_CastShadows\":0,\"m_ReceiveShadows\":0,\"m_DynamicOccludee\":1,\"m_StaticShadowCaster\":0,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_RayTracingMode\":0,\"m_RayTraceProcedural\":0,\"m_RenderingLayerMask\":1,\"m_RendererPriority\":0,\"m_Materials\":[null],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":null,\"m_ProbeAnchor\":null,\"m_LightProbeVolumeOverride\":null,\"m_ScaleInLightmap\":1,\"m_ReceiveGI\":1,\"m_PreserveUVs\":0,\"m_IgnoreNormalsForChartDetection\":0,\"m_ImportantGI\":0,\"m_StitchLightmapSeams\":1,\"m_SelectedEditorRenderState\":0,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89,\"m_LightmapParameters\":null,\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0,\"m_Sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/9Sliced.png#9-Sliced\"},\"m_Color\":{\"$c\":[0.94509804,0.5352425,0.06666666,1]},\"m_FlipX\":0,\"m_FlipY\":0,\"m_DrawMode\":0,\"m_Size\":{\"x\":1,\"y\":1},\"m_AdaptiveModeThreshold\":0.5,\"m_SpriteTileMode\":0,\"m_WasSpriteAssigned\":1,\"m_MaskInteraction\":0,\"m_SpriteSortPoint\":0,\"$type\":\"SpriteRenderer\"}"
+
+[node name="C_PolygonCollider2D" type="Node" parent="Maps/Map1/Blocks/Finish"]
+script = ExtResource("14")
+metadata/u = "{\"m_Enabled\":1,\"m_Density\":1,\"m_Material\":null,\"m_IncludeLayers\":{\"m_Bits\":0},\"m_ExcludeLayers\":{\"m_Bits\":0},\"m_LayerOverridePriority\":0,\"m_ForceSendLayers\":{\"m_Bits\":4294967295},\"m_ForceReceiveLayers\":{\"m_Bits\":4294967295},\"m_ContactCaptureLayers\":{\"m_Bits\":4294967295},\"m_CallbackLayers\":{\"m_Bits\":4294967295},\"m_IsTrigger\":0,\"m_UsedByEffector\":0,\"m_UsedByComposite\":0,\"m_Offset\":{\"x\":0,\"y\":0},\"m_SpriteTilingProperty\":{\"border\":{\"x\":0.25,\"y\":0.25,\"z\":0.25,\"w\":0.25},\"pivot\":{\"x\":0.5,\"y\":0.5},\"oldSize\":{\"x\":1,\"y\":1},\"newSize\":{\"x\":1,\"y\":1},\"adaptiveTilingThreshold\":0.5,\"drawMode\":0,\"adaptiveTiling\":0},\"m_AutoTiling\":0,\"m_Points\":{\"m_Paths\":[[{\"x\":0.4921875,\"y\":0.28515625},{\"x\":0.46875,\"y\":0.359375},{\"x\":0.421875,\"y\":0.421875},{\"x\":0.359375,\"y\":0.46875},{\"x\":0.28515625,\"y\":0.4921875},{\"x\":-0.28515625,\"y\":0.4921875},{\"x\":-0.359375,\"y\":0.46875},{\"x\":-0.421875,\"y\":0.421875},{\"x\":-0.46875,\"y\":0.359375},{\"x\":-0.4921875,\"y\":0.28515625},{\"x\":-0.4921875,\"y\":-0.28515625},{\"x\":-0.46875,\"y\":-0.359375},{\"x\":-0.421875,\"y\":-0.421875},{\"x\":-0.359375,\"y\":-0.46875},{\"x\":-0.28515625,\"y\":-0.4921875},{\"x\":0.28515625,\"y\":-0.4921875},{\"x\":0.359375,\"y\":-0.46875},{\"x\":0.421875,\"y\":-0.421875},{\"x\":0.46875,\"y\":-0.359375},{\"x\":0.4921875,\"y\":-0.28515625}]]},\"m_UseDelaunayMesh\":0,\"$type\":\"PolygonCollider2D\",\"$body\":\"self\"}"
+
+[node name="CanvasChat" type="CanvasLayer" parent="."]
+layer = 0
+metadata/unity_order = 0
+
+[node name="CanvasChat" type="Control" parent="CanvasChat"]
+script = ExtResource("6")
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"canvas\":{\"order\":0,\"override\":false,\"mode\":1},\"name\":\"CanvasChat\",\"tag\":\"CanvasChat\",\"layer\":5}"
+
+[node name="InputField (TMP)" type="Control" parent="CanvasChat/CanvasChat"]
+script = ExtResource("6")
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -400.0
+offset_top = -80.0
+offset_right = 0.0
+offset_bottom = -0.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[0,0,0,1],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"InputField (TMP)\",\"tag\":\"MessageField\",\"layer\":5}"
+
+[node name="C_TMP_InputField" type="Node" parent="CanvasChat/CanvasChat/InputField (TMP)"]
+script = ExtResource("19")
+metadata/u = "{\"m_Enabled\":1,\"m_Navigation\":{\"m_Mode\":3,\"m_WrapAround\":0,\"m_SelectOnUp\":null,\"m_SelectOnDown\":null,\"m_SelectOnLeft\":null,\"m_SelectOnRight\":null},\"m_Transition\":1,\"m_Colors\":{\"m_NormalColor\":{\"$c\":[1,1,1,1]},\"m_HighlightedColor\":{\"$c\":[0.9607843,0.9607843,0.9607843,1]},\"m_PressedColor\":{\"$c\":[0.78431374,0.78431374,0.78431374,1]},\"m_SelectedColor\":{\"$c\":[0.9607843,0.9607843,0.9607843,1]},\"m_DisabledColor\":{\"$c\":[0.78431374,0.78431374,0.78431374,0.5019608]},\"m_ColorMultiplier\":1,\"m_FadeDuration\":0.1},\"m_SpriteState\":{\"m_HighlightedSprite\":null,\"m_PressedSprite\":null,\"m_SelectedSprite\":null,\"m_DisabledSprite\":null},\"m_AnimationTriggers\":{\"m_NormalTrigger\":\"Normal\",\"m_HighlightedTrigger\":\"Highlighted\",\"m_PressedTrigger\":\"Pressed\",\"m_SelectedTrigger\":\"Selected\",\"m_DisabledTrigger\":\"Disabled\"},\"m_Interactable\":1,\"m_TargetGraphic\":{\"$n\":\"CanvasChat/CanvasChat/InputField (TMP)\"},\"m_TextViewport\":{\"$n\":\"CanvasChat/CanvasChat/InputField (TMP)/Text Area\"},\"m_TextComponent\":{\"$n\":\"CanvasChat/CanvasChat/InputField (TMP)/Text Area/Text\"},\"m_Placeholder\":{\"$n\":\"CanvasChat/CanvasChat/InputField (TMP)/Text Area/Placeholder\"},\"m_VerticalScrollbar\":null,\"m_VerticalScrollbarEventHandler\":null,\"m_LayoutGroup\":null,\"m_ScrollSensitivity\":1,\"m_ContentType\":0,\"m_InputType\":0,\"m_AsteriskChar\":42,\"m_KeyboardType\":0,\"m_LineType\":0,\"m_HideMobileInput\":0,\"m_HideSoftKeyboard\":0,\"m_CharacterValidation\":0,\"m_RegexValue\":null,\"m_GlobalPointSize\":14,\"m_CharacterLimit\":0,\"m_OnEndEdit\":{\"$event\":[]},\"m_OnSubmit\":{\"$event\":[]},\"m_OnSelect\":{\"$event\":[{\"target\":{\"$n\":\"GameManager/C_MPSVGameManager\"},\"method\":\"OnSelectInputChatField\",\"mode\":1,\"arg\":null,\"state\":2}]},\"m_OnDeselect\":{\"$event\":[{\"target\":{\"$n\":\"GameManager/C_MPSVGameManager\"},\"method\":\"OnDeselectInputChatField\",\"mode\":1,\"arg\":null,\"state\":2}]},\"m_OnTextSelection\":{\"$event\":[]},\"m_OnEndTextSelection\":{\"$event\":[]},\"m_OnValueChanged\":{\"$event\":[]},\"m_OnTouchScreenKeyboardStatusChanged\":{\"$event\":[]},\"m_CaretColor\":{\"$c\":[0.19607843,0.19607843,0.19607843,1]},\"m_CustomCaretColor\":0,\"m_SelectionColor\":{\"$c\":[0.65882355,0.80784315,1,0.7529412]},\"m_Text\":null,\"m_CaretBlinkRate\":0.85,\"m_CaretWidth\":1,\"m_ReadOnly\":0,\"m_RichText\":1,\"m_GlobalFontAsset\":{\"$font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"m_OnFocusSelectAll\":1,\"m_ResetOnDeActivation\":1,\"m_RestoreOriginalTextOnEscape\":1,\"m_isRichTextEditingAllowed\":0,\"m_LineLimit\":0,\"m_InputValidator\":null,\"$type\":\"TMP_InputField\"}"
+
+[node name="Text Area" type="Control" parent="CanvasChat/CanvasChat/InputField (TMP)"]
+script = ExtResource("6")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 10.0
+offset_top = 7.0
+offset_right = -10.0
+offset_bottom = -6.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"name\":\"Text Area\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_RectMask2D" type="Node" parent="CanvasChat/CanvasChat/InputField (TMP)/Text Area"]
+script = ExtResource("8")
+metadata/u = "{\"m_Enabled\":1,\"m_Padding\":{\"x\":-8,\"y\":-5,\"z\":-8,\"w\":-5},\"m_Softness\":{\"x\":0,\"y\":0},\"$type\":\"RectMask2D\"}"
+
+[node name="Placeholder" type="Control" parent="CanvasChat/CanvasChat/InputField (TMP)/Text Area"]
+script = ExtResource("9")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0.0
+offset_top = -0.0
+offset_right = 0.0
+offset_bottom = -0.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"Enter text...\",\"color\":[0,0,0,1.0],\"vertexColor\":[1,1,1,1],\"fontSize\":59.95,\"autoSize\":true,\"minSize\":18,\"maxSize\":72,\"style\":2,\"halign\":1,\"valign\":256,\"wrap\":false,\"overflow\":0,\"margin\":[0,0,0,0],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"Placeholder\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_LayoutElement" type="Node" parent="CanvasChat/CanvasChat/InputField (TMP)/Text Area/Placeholder"]
+script = ExtResource("20")
+metadata/u = "{\"m_Enabled\":1,\"m_IgnoreLayout\":1,\"m_MinWidth\":-1,\"m_MinHeight\":-1,\"m_PreferredWidth\":-1,\"m_PreferredHeight\":-1,\"m_FlexibleWidth\":-1,\"m_FlexibleHeight\":-1,\"m_LayoutPriority\":1,\"$type\":\"LayoutElement\"}"
+
+[node name="Text" type="Control" parent="CanvasChat/CanvasChat/InputField (TMP)/Text Area"]
+script = ExtResource("9")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0.0
+offset_top = -0.0
+offset_right = 0.0
+offset_bottom = -0.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"​\",\"color\":[0,0,0,1],\"vertexColor\":[1,1,1,1],\"fontSize\":72,\"autoSize\":true,\"minSize\":18,\"maxSize\":72,\"style\":0,\"halign\":1,\"valign\":256,\"wrap\":false,\"overflow\":0,\"margin\":[0,0,0,0],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"Text\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="SendMessage" type="Control" parent="CanvasChat/CanvasChat"]
+script = ExtResource("6")
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -480.0
+offset_top = -80.0
+offset_right = -400.0
+offset_bottom = -0.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[0,0,0,1],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"SendMessage\",\"tag\":\"SendMessage\",\"layer\":5}"
+
+[node name="C_Button" type="Node" parent="CanvasChat/CanvasChat/SendMessage"]
+script = ExtResource("10")
+metadata/u = "{\"m_Enabled\":1,\"m_Navigation\":{\"m_Mode\":3,\"m_WrapAround\":0,\"m_SelectOnUp\":null,\"m_SelectOnDown\":null,\"m_SelectOnLeft\":null,\"m_SelectOnRight\":null},\"m_Transition\":1,\"m_Colors\":{\"m_NormalColor\":{\"$c\":[1,1,1,1]},\"m_HighlightedColor\":{\"$c\":[1.0,1.0,1.0,1]},\"m_PressedColor\":{\"$c\":[0.75,0.75,0.75,1]},\"m_SelectedColor\":{\"$c\":[0.9607843,0.9607843,0.9607843,1]},\"m_DisabledColor\":{\"$c\":[0.78431374,0.78431374,0.78431374,0.5019608]},\"m_ColorMultiplier\":1,\"m_FadeDuration\":0.1},\"m_SpriteState\":{\"m_HighlightedSprite\":null,\"m_PressedSprite\":null,\"m_SelectedSprite\":null,\"m_DisabledSprite\":null},\"m_AnimationTriggers\":{\"m_NormalTrigger\":\"Normal\",\"m_HighlightedTrigger\":\"Highlighted\",\"m_PressedTrigger\":\"Pressed\",\"m_SelectedTrigger\":\"Selected\",\"m_DisabledTrigger\":\"Disabled\"},\"m_Interactable\":1,\"m_TargetGraphic\":{\"$n\":\"CanvasChat/CanvasChat/SendMessage\"},\"m_OnClick\":{\"$event\":[{\"target\":{\"$n\":\"GameManager/C_MPSVGameManager\"},\"method\":null,\"mode\":1,\"arg\":null,\"state\":2}]},\"$type\":\"Button\"}"
+
+[node name="Text (TMP)" type="Control" parent="CanvasChat/CanvasChat/SendMessage"]
+script = ExtResource("9")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0.0
+offset_top = -0.0
+offset_right = 0.0
+offset_bottom = -0.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\">\",\"color\":[1,1,1,1],\"vertexColor\":[1,1,1,1],\"fontSize\":71.6,\"autoSize\":true,\"minSize\":14,\"maxSize\":40,\"style\":1,\"halign\":2,\"valign\":512,\"wrap\":true,\"overflow\":0,\"margin\":[0,0,0,0],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"Text (TMP)\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Scroll View" type="Control" parent="CanvasChat/CanvasChat"]
+script = ExtResource("6")
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -480.0
+offset_top = -632.615
+offset_right = 0.0
+offset_bottom = -80.005
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[1,1,1,0.392],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"Scroll View\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_ScrollRect" type="Node" parent="CanvasChat/CanvasChat/Scroll View"]
+script = ExtResource("7")
+metadata/u = "{\"m_Enabled\":1,\"m_Content\":{\"$n\":\"CanvasChat/CanvasChat/Scroll View/Viewport/Content\"},\"m_Horizontal\":0,\"m_Vertical\":1,\"m_MovementType\":1,\"m_Elasticity\":0.1,\"m_Inertia\":1,\"m_DecelerationRate\":0.135,\"m_ScrollSensitivity\":1,\"m_Viewport\":{\"$n\":\"CanvasChat/CanvasChat/Scroll View/Viewport\"},\"m_HorizontalScrollbar\":null,\"m_VerticalScrollbar\":null,\"m_HorizontalScrollbarVisibility\":2,\"m_VerticalScrollbarVisibility\":2,\"m_HorizontalScrollbarSpacing\":-3,\"m_VerticalScrollbarSpacing\":-3,\"m_OnValueChanged\":{\"$event\":[]},\"$type\":\"ScrollRect\"}"
+
+[node name="Viewport" type="Control" parent="CanvasChat/CanvasChat/Scroll View"]
+script = ExtResource("6")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -276.305031
+offset_right = 240.0
+offset_bottom = 276.304969
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[0,0,0,0],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"Viewport\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_Mask" type="Node" parent="CanvasChat/CanvasChat/Scroll View/Viewport"]
+script = ExtResource("8")
+metadata/u = "{\"m_Enabled\":1,\"m_ShowMaskGraphic\":0,\"$type\":\"Mask\"}"
+
+[node name="Content" type="Control" parent="CanvasChat/CanvasChat/Scroll View/Viewport"]
+script = ExtResource("6")
+anchor_left = 0.5
+anchor_top = 0
+anchor_right = 0.5
+anchor_bottom = 0
+offset_left = -240
+offset_top = 0
+offset_right = 240
+offset_bottom = 0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0, 1]
+metadata/u = "{\"name\":\"Content\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_VerticalLayoutGroup" type="Node" parent="CanvasChat/CanvasChat/Scroll View/Viewport/Content"]
+script = ExtResource("11")
+metadata/u = "{\"m_Enabled\":1,\"m_Padding\":{\"m_Left\":0,\"m_Right\":0,\"m_Top\":0,\"m_Bottom\":0},\"m_ChildAlignment\":1,\"m_Spacing\":1,\"m_ChildForceExpandWidth\":1,\"m_ChildForceExpandHeight\":1,\"m_ChildControlWidth\":0,\"m_ChildControlHeight\":0,\"m_ChildScaleWidth\":0,\"m_ChildScaleHeight\":0,\"m_ReverseArrangement\":0,\"$type\":\"VerticalLayoutGroup\"}"
+
+[node name="C_ContentSizeFitter" type="Node" parent="CanvasChat/CanvasChat/Scroll View/Viewport/Content"]
+script = ExtResource("12")
+metadata/u = "{\"m_Enabled\":1,\"m_HorizontalFit\":0,\"m_VerticalFit\":2,\"$type\":\"ContentSizeFitter\"}"

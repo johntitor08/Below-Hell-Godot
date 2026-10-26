@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/u/UImage.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/u/UText.gd" id="2"]
+
+[node name="MPPanelPlayerCompleted" type="Control"]
+script = ExtResource("1")
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -360.0
+offset_top = -120.0
+offset_right = 360.0
+offset_bottom = -0.0
+visible = false
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[1,1,1,0.392],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"MPPanelPlayerCompleted\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="PlayerCompletedText" type="Control" parent="."]
+script = ExtResource("2")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -60.0
+offset_right = 360.0
+offset_bottom = 60.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"Player completed the map in x seconds.\",\"color\":[1,1,1,1],\"vertexColor\":[1,1,1,1],\"fontSize\":52.9,\"autoSize\":true,\"minSize\":18,\"maxSize\":72,\"style\":0,\"halign\":2,\"valign\":512,\"wrap\":true,\"overflow\":0,\"margin\":[0,0,0,0],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"PlayerCompletedText\",\"tag\":\"Untagged\",\"layer\":5}"

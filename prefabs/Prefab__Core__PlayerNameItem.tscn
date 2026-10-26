@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/u/UText.gd" id="1"]
+
+[node name="PlayerNameItem" type="Control"]
+script = ExtResource("1")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.745
+offset_top = -50.0
+offset_right = 170.745
+offset_bottom = 50.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"\",\"color\":[1,1,1,1],\"vertexColor\":[1,1,1,1],\"fontSize\":36,\"autoSize\":true,\"minSize\":18,\"maxSize\":72,\"style\":0,\"halign\":2,\"valign\":512,\"wrap\":true,\"overflow\":0,\"margin\":[0,0,0,0],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"PlayerNameItem\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_PlayerNameItem" type="Node" parent="."]
+metadata/u = "{\"m_Enabled\":1,\"playerNickname\":{\"$n\":\".\"},\"$type\":\"PlayerNameItem\"}"

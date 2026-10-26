@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/u/UImage.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/u/UScrollRect.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/u/UMask.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/u/UText.gd" id="4"]
+
+[node name="Shop" type="Control"]
+script = ExtResource("1")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -825.0
+offset_top = -425.0
+offset_right = 825.0
+offset_bottom = 425.0
+visible = false
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[1,1,1,0.392],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"Shop\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Scroll View" type="Control" parent="."]
+script = ExtResource("1")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -825.0
+offset_top = -425.0
+offset_right = 825.0
+offset_bottom = 425.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[1,1,1,0.392],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"Scroll View\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_ScrollRect" type="Node" parent="Scroll View"]
+script = ExtResource("2")
+metadata/u = "{\"m_Enabled\":1,\"m_Content\":{\"$n\":\"Scroll View/Viewport/Content\"},\"m_Horizontal\":0,\"m_Vertical\":0,\"m_MovementType\":1,\"m_Elasticity\":0.1,\"m_Inertia\":1,\"m_DecelerationRate\":0.135,\"m_ScrollSensitivity\":1,\"m_Viewport\":{\"$n\":\"Scroll View/Viewport\"},\"m_HorizontalScrollbar\":null,\"m_VerticalScrollbar\":null,\"m_HorizontalScrollbarVisibility\":2,\"m_VerticalScrollbarVisibility\":2,\"m_HorizontalScrollbarSpacing\":-3,\"m_VerticalScrollbarSpacing\":-3,\"m_OnValueChanged\":{\"$event\":[]},\"$type\":\"ScrollRect\"}"
+
+[node name="Viewport" type="Control" parent="Scroll View"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0, 1]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":null,\"color\":[1,1,1,1],\"type\":1,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"Viewport\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_Mask" type="Node" parent="Scroll View/Viewport"]
+script = ExtResource("3")
+metadata/u = "{\"m_Enabled\":1,\"m_ShowMaskGraphic\":0,\"$type\":\"Mask\"}"
+
+[node name="Content" type="Control" parent="Scroll View/Viewport"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 0
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 850
+visible = true
+mouse_filter = 2
+metadata/pivot = [0, 1]
+metadata/u = "{\"name\":\"Content\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Coin" type="Control" parent="."]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 150.0
+offset_bottom = 150.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"raw\":true,\"texture\":\"res://Assets/Sprite/coin.png\",\"color\":[1,1,1,1],\"type\":0,\"raycastTarget\":true,\"uvRect\":{\"serializedVersion\":2,\"x\":0,\"y\":0,\"width\":1,\"height\":1}},\"name\":\"Coin\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="CoinText" type="Control" parent="."]
+script = ExtResource("4")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 150.0
+offset_top = 50.0
+offset_right = 350.0
+offset_bottom = 150.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"0\",\"color\":[1,1,1,1],\"vertexColor\":[1,1,1,1],\"fontSize\":72,\"autoSize\":true,\"minSize\":18,\"maxSize\":72,\"style\":1,\"halign\":1,\"valign\":512,\"wrap\":true,\"overflow\":0,\"margin\":[20,0,0,0],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"CoinText\",\"tag\":\"Untagged\",\"layer\":5}"

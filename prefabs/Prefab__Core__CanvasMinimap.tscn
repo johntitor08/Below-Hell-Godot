@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/u/UImage.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/u/UMask.gd" id="2"]
+
+[node name="CanvasMinimap" type="Control"]
+script = ExtResource("1")
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"canvas\":{\"order\":0,\"override\":false,\"mode\":1},\"name\":\"CanvasMinimap\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="MinimapWindow" type="Control" parent="."]
+script = ExtResource("1")
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -300
+offset_top = -300
+offset_right = 0
+offset_bottom = 0
+visible = true
+mouse_filter = 2
+metadata/pivot = [1, 0]
+metadata/u = "{\"name\":\"MinimapWindow\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="Mask" type="Control" parent="MinimapWindow"]
+script = ExtResource("1")
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -300
+offset_top = -300
+offset_right = 0
+offset_bottom = 0
+visible = true
+mouse_filter = 2
+metadata/pivot = [1, 0]
+metadata/u = "{\"image\":{\"enabled\":true,\"sprite\":{\"$spr\":\"Library/PackageCache/com.unity.2d.sprite@86f35cf682f2/Editor/ObjectMenuCreation/DefaultAssets/Textures/CircleMask.png#Circle Mask\"},\"color\":[1,1,1,1],\"type\":0,\"preserveAspect\":false,\"fillCenter\":true,\"fillMethod\":4,\"fillAmount\":1,\"fillClockwise\":true,\"fillOrigin\":0,\"ppum\":1,\"raycastTarget\":true,\"maskable\":true,\"raycastPadding\":[0,0,0,0]},\"name\":\"Mask\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_Mask" type="Node" parent="MinimapWindow/Mask"]
+script = ExtResource("2")
+metadata/u = "{\"m_Enabled\":1,\"m_ShowMaskGraphic\":0,\"$type\":\"Mask\"}"
+
+[node name="MinimapRenderTexture" type="Control" parent="MinimapWindow/Mask"]
+script = ExtResource("1")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"image\":{\"enabled\":true,\"raw\":true,\"texture\":null,\"color\":[1,1,1,1],\"type\":0,\"raycastTarget\":true,\"uvRect\":{\"serializedVersion\":2,\"x\":0,\"y\":0,\"width\":1,\"height\":1}},\"name\":\"MinimapRenderTexture\",\"tag\":\"Untagged\",\"layer\":5}"

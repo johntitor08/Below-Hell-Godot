@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/u/UText.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/u/UNetworkObject.gd" id="2"]
+
+[node name="Message" type="Control"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0.0
+offset_top = -0.0
+offset_right = 480.02
+offset_bottom = 100.0
+visible = true
+mouse_filter = 2
+metadata/pivot = [0.5, 0.5]
+metadata/u = "{\"text\":{\"enabled\":true,\"text\":\"\",\"color\":[0,0,0,1],\"vertexColor\":[1,1,1,1],\"fontSize\":36,\"autoSize\":true,\"minSize\":32,\"maxSize\":72,\"style\":0,\"halign\":1,\"valign\":256,\"wrap\":true,\"overflow\":0,\"margin\":[0,0,0,0],\"lineSpacing\":0,\"charSpacing\":0,\"wordSpacing\":0,\"paragraphSpacing\":0,\"raycastTarget\":true,\"rich\":true,\"font\":{\"ttf\":\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\",\"fallbacks\":[\"res://Assets/TextMesh Pro/Fonts/LiberationSans.ttf\"],\"name\":\"LiberationSans SDF.asset\"}},\"name\":\"Message\",\"tag\":\"Untagged\",\"layer\":5}"
+
+[node name="C_Message" type="Node" parent="."]
+metadata/u = "{\"m_Enabled\":1,\"messageText\":{\"$n\":\".\"},\"$type\":\"Message\"}"
+
+[node name="C_NetworkObject" type="Node" parent="."]
+script = ExtResource("2")
+metadata/u = "{\"m_Enabled\":1,\"GlobalObjectIdHash\":951099334,\"AlwaysReplicateAsRoot\":0,\"SynchronizeTransform\":1,\"ActiveSceneSynchronization\":0,\"SceneMigrationSynchronization\":1,\"SpawnWithObservers\":1,\"DontDestroyWithOwner\":0,\"AutoObjectParentSync\":1,\"$type\":\"NetworkObject\"}"
+
+[node name="C_ClientNetworkTransform" type="Node" parent="."]
+metadata/u = "{\"m_Enabled\":1,\"SyncPositionX\":0,\"SyncPositionY\":0,\"SyncPositionZ\":0,\"SyncRotAngleX\":0,\"SyncRotAngleY\":0,\"SyncRotAngleZ\":0,\"SyncScaleX\":1,\"SyncScaleY\":1,\"SyncScaleZ\":1,\"PositionThreshold\":0.001,\"RotAngleThreshold\":0.01,\"ScaleThreshold\":0.01,\"UseQuaternionSynchronization\":0,\"UseQuaternionCompression\":0,\"UseHalfFloatPrecision\":0,\"InLocalSpace\":0,\"Interpolate\":1,\"SlerpPosition\":0,\"$type\":\"ClientNetworkTransform\"}"
