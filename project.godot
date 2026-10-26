@@ -5,15 +5,19 @@ config_version=5
 [application]
 
 config/name="Below Hell"
-run/main_scene="res://scenes/Authentication.tscn"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/description="Öz topla, hayvanlara dönüş, cehennemin altından çık."
+run/main_scene="res://game/ui/main_menu.tscn"
+config/features=PackedStringArray("4.6", "GL Compatibility")
 
 [autoload]
 
-DB="*res://scripts/u/DB.gd"
-U="*res://scripts/u/U.gd"
-ES="*res://scripts/u/ES.gd"
-Shot="*res://scripts/u/Shot.gd"
+Creatures="*res://game/core/creatures.gd"
+Game="*res://game/core/game.gd"
+Audio="*res://game/core/audio.gd"
+Fx="*res://game/core/fx.gd"
+Transition="*res://game/core/transition.gd"
+Net="*res://game/net/net.gd"
+Shot="*res://tools/shot.gd"
 
 [display]
 
@@ -26,15 +30,29 @@ window/stretch/aspect="expand"
 
 [gui]
 
+theme/custom="res://game/ui/theme.tres"
 common/snap_controls_to_pixels=false
+
+[layer_names]
+
+2d_physics/layer_1="world"
+2d_physics/layer_2="player"
+2d_physics/layer_3="enemy"
+2d_physics/layer_4="pickup"
+2d_physics/layer_5="hazard"
+2d_physics/layer_6="water"
+2d_physics/layer_7="oneway"
+2d_physics/layer_8="breakable"
 
 [physics]
 
-2d/default_gravity=981.0
+common/physics_ticks_per_second=60
+2d/default_gravity=2600.0
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=1
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+textures/canvas_textures/default_texture_filter=1
+environment/defaults/default_clear_color=Color(0.07, 0.05, 0.1, 1)
+2d/snap/snap_2d_transforms_to_pixel=false

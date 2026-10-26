@@ -1,0 +1,30 @@
+{
+  "ozRules": {
+    "voluntaryRevertRefund": 0.5,
+    "deathRefund": 0.0,
+    "fallbackForm": "sinek",
+    "startingOzCap": 6
+  },
+  "creatures": [
+    { "id": "01-sinek", "name": "Fly", "tier": 1, "ozCost": 1, "hp": 1, "damage": 1, "moveSpeed": 7, "jump": 0, "flight": true, "abilities": ["free_flight", "tiny_passages"], "role": "scout" },
+    { "id": "02-orumcek", "name": "Spider", "tier": 1, "ozCost": 2, "hp": 3, "damage": 3, "moveSpeed": 5, "jump": 6, "flight": false, "abilities": ["wall_climb", "web_bridge", "web_trap"], "role": "vertical_access" },
+    { "id": "03-peygamber-devesi", "name": "Mantis", "tier": 1, "ozCost": 2, "hp": 3, "damage": 6, "moveSpeed": 5, "jump": 5, "flight": false, "abilities": ["parry_reflect"], "role": "duelist" },
+    { "id": "04-karinca-aslani", "name": "Antlion", "tier": 1, "ozCost": 2, "hp": 4, "damage": 5, "moveSpeed": 3, "jump": 2, "flight": false, "abilities": ["burrow", "pit_trap"], "role": "ambusher" },
+    { "id": "05-akrep", "name": "Scorpion", "tier": 1, "ozCost": 2, "hp": 4, "damage": 5, "moveSpeed": 4, "jump": 3, "flight": false, "abilities": ["poison_sting_dot"], "role": "tank_breaker" },
+    { "id": "06-kurbaga", "name": "Frog", "tier": 2, "ozCost": 3, "hp": 4, "damage": 3, "moveSpeed": 4, "jump": 9, "flight": false, "abilities": ["tongue_grapple", "super_jump"], "role": "traversal" },
+    { "id": "07-kus", "name": "Bird", "tier": 2, "ozCost": 3, "hp": 3, "damage": 4, "moveSpeed": 8, "jump": 0, "flight": true, "abilities": ["dive_attack_height_scaled"], "role": "skirmisher" },
+    { "id": "08-yarasa", "name": "Bat", "tier": 2, "ozCost": 3, "hp": 3, "damage": 3, "moveSpeed": 7, "jump": 0, "flight": true, "abilities": ["echolocation_reveal"], "role": "dark_zone_key" },
+    { "id": "09-aksolotl", "name": "Axolotl", "tier": 2, "ozCost": 3, "hp": 5, "damage": 2, "moveSpeed": 3, "jump": 3, "flight": false, "abilities": ["water_breathing", "idle_regen"], "role": "healer_water" },
+    { "id": "10-bukalemun", "name": "Chameleon", "tier": 2, "ozCost": 3, "hp": 3, "damage": 4, "moveSpeed": 4, "jump": 4, "flight": false, "abilities": ["camouflage_stealth", "tongue_pull_items"], "role": "stealth" },
+    { "id": "11-kirpi", "name": "Hedgehog", "tier": 2, "ozCost": 3, "hp": 5, "damage": 4, "moveSpeed": 3, "jump": 3, "flight": false, "abilities": ["thorn_armor_contact_damage", "roll_form"], "role": "defender" },
+    { "id": "12-slime", "name": "Slime", "tier": 2, "ozCost": 3, "hp": 4, "damage": 2, "moveSpeed": 2, "jump": 2, "flight": false, "abilities": ["split_clone", "clone_sacrifice"], "role": "puzzle_key" },
+    { "id": "13-yilan-baligi", "name": "Eel", "tier": 2, "ozCost": 4, "hp": 4, "damage": 6, "moveSpeed": 6, "jump": 2, "flight": false, "abilities": ["electric_field_aoe_water", "underwater_speed_9"], "role": "water_combat" },
+    { "id": "14-kedi", "name": "Cat", "tier": 2, "ozCost": 4, "hp": 4, "damage": 5, "moveSpeed": 7, "jump": 7, "flight": false, "abilities": ["nine_lives_revive", "double_jump"], "role": "risk_insurance" },
+    { "id": "15-geyik", "name": "Deer", "tier": 3, "ozCost": 5, "hp": 6, "damage": 6, "moveSpeed": 6, "jump": 5, "flight": false, "abilities": ["antler_charge_break_walls", "knockback"], "role": "breaker" },
+    { "id": "16-ahtapot", "name": "Octopus", "tier": 3, "ozCost": 5, "hp": 5, "damage": 4, "moveSpeed": 4, "jump": 3, "flight": false, "abilities": ["squeeze_through_pipes", "ink_blind"], "role": "infiltrator" },
+    { "id": "17-kurt", "name": "Wolf", "tier": 3, "ozCost": 6, "hp": 6, "damage": 7, "moveSpeed": 8, "jump": 6, "flight": false, "abilities": ["summon_pack_10s"], "role": "dps" },
+    { "id": "18-kartal", "name": "Eagle", "tier": 4, "ozCost": 8, "hp": 6, "damage": 7, "moveSpeed": 9, "jump": 0, "flight": true, "abilities": ["high_flight", "grab_carry_drop"], "role": "air_dominance" },
+    { "id": "19-ayi", "name": "Bear", "tier": 4, "ozCost": 8, "hp": 9, "damage": 9, "moveSpeed": 4, "jump": 3, "flight": false, "abilities": ["roar_stun", "smash_heavy_obstacles"], "role": "juggernaut" },
+    { "id": "20-ejderha", "name": "Dragon", "tier": 4, "ozCost": 10, "hp": 10, "damage": 10, "moveSpeed": 6, "jump": 0, "flight": true, "abilities": ["fire_breath_aoe", "all_traversal"], "role": "apex" }
+  ]
+}

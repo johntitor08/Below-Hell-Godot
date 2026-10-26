@@ -1,2 +1,0 @@
-class_name UNetworkRigidbody2D
-extends Mono

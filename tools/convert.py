@@ -590,52 +590,146 @@ def animator_data(d):
     p = uy.guid_path(ctrl.get("guid")) if ctrl.get("guid") else None
     if not p:
         return None
+    return controller_data(p)
+
+
+_ctrl_cache = {}
+
+
+def controller_data(p):
+    if p in _ctrl_cache:
+        return _ctrl_cache[p]
     docs = uy.load(p)
-    states = {}
-    trans = []
-    default = None
-    params = []
+    if p.endswith(".overrideController"):
+        base = None
+        overrides = {}
+        for o in docs.values():
+            if o.type == "AnimatorOverrideController":
+                bc = o.data.get("m_Controller") or {}
+                base = uy.guid_path(bc.get("guid")) if bc.get("guid") else None
+                for c in o.data.get("m_Clips") or []:
+                    a = uy.guid_path((c.get("m_OriginalClip") or {}).get("guid", "")) if c.get("m_OriginalClip") else None
+                    b = uy.guid_path((c.get("m_OverrideClip") or {}).get("guid", "")) if c.get("m_OverrideClip") else None
+                    if a and b:
+                        overrides[a] = b
+        if not base:
+            return None
+        out = json.loads(json.dumps(controller_data(base)))
+        for st in out["states"].values():
+            if st.get("clip_path") in overrides:
+                st["clip"] = clip_data(overrides[st["clip_path"]])
+        _ctrl_cache[p] = out
+        return out
+    params = {}
+    root_sm = None
     for o in docs.values():
         if o.type == "AnimatorController":
             for pr in o.data.get("m_AnimatorParameters") or []:
-                params.append(pr.get("m_Name"))
-        if o.type == "AnimatorStateMachine":
-            ds = o.data.get("m_DefaultState") or {}
-            default = int(ds.get("fileID", 0))
-            for t in o.data.get("m_AnyStateTransitions") or []:
-                trans.append(("any", int(t["fileID"])))
+                t = pr.get("m_Type", 1)
+                dv = pr.get("m_DefaultFloat", 0) if t == 1 else (pr.get("m_DefaultInt", 0) if t == 3 else bool(pr.get("m_DefaultBool", 0)))
+                params[pr.get("m_Name")] = {"type": t, "default": dv}
+            layers = o.data.get("m_AnimatorLayers") or []
+            if layers:
+                root_sm = int((layers[0].get("m_StateMachine") or {}).get("fileID", 0))
+    states = {}
     for fid, o in docs.items():
         if o.type == "AnimatorState":
             motion = o.data.get("m_Motion") or {}
-            clip = uy.guid_path(motion.get("guid")) if motion.get("guid") else None
-            states[fid] = {"name": o.data.get("m_Name"), "clip": clip_data(clip) if clip else None,
-                           "transitions": [int(t["fileID"]) for t in o.data.get("m_Transitions") or []]}
-    tr_out = {}
+            entry = {"name": o.data.get("m_Name"), "speed": o.data.get("m_Speed", 1),
+                     "speedParam": o.data.get("m_SpeedParameter") if o.data.get("m_SpeedParameterActive") else None,
+                     "transitions": [int(t["fileID"]) for t in o.data.get("m_Transitions") or []]}
+            if motion.get("guid"):
+                cp = uy.guid_path(motion.get("guid"))
+                entry["clip"] = clip_data(cp) if cp else None
+                entry["clip_path"] = cp
+            elif int(motion.get("fileID", 0)) in docs:
+                bt = docs[int(motion["fileID"])]
+                if bt.type == "BlendTree":
+                    kids = []
+                    for ch in bt.data.get("m_Childs") or []:
+                        m = ch.get("m_Motion") or {}
+                        cp = uy.guid_path(m.get("guid")) if m.get("guid") else None
+                        kids.append({"threshold": ch.get("m_Threshold", 0), "clip": clip_data(cp) if cp else None})
+                    entry["blend"] = {"param": bt.data.get("m_BlendParameter"), "children": kids}
+            states[fid] = entry
+    default = None
+    any_tr = []
+    for fid, o in docs.items():
+        if o.type == "AnimatorStateMachine":
+            if root_sm is None or fid == root_sm or default is None:
+                ds = int((o.data.get("m_DefaultState") or {}).get("fileID", 0))
+                if ds in states and (fid == root_sm or default is None):
+                    default = states[ds]["name"]
+            for t in o.data.get("m_AnyStateTransitions") or []:
+                any_tr.append(int(t["fileID"]))
+    trs = {}
     for fid, o in docs.items():
         if o.type == "AnimatorStateTransition":
             dst = int((o.data.get("m_DstState") or {}).get("fileID", 0))
-            conds = [c.get("m_ConditionEvent") for c in o.data.get("m_Conditions") or []]
-            tr_out[fid] = {"to": states.get(dst, {}).get("name"), "conds": conds,
-                           "exit": bool(o.data.get("m_HasExitTime", 0)), "exitTime": o.data.get("m_ExitTime", 1),
-                           "duration": o.data.get("m_TransitionDuration", 0)}
+            conds = [[c.get("m_ConditionMode", 1), c.get("m_ConditionEvent"), c.get("m_EventTreshold", 0)]
+                     for c in o.data.get("m_Conditions") or []]
+            trs[fid] = {"to": states.get(dst, {}).get("name"), "conds": conds,
+                        "exit": bool(o.data.get("m_HasExitTime", 0)), "exitTime": o.data.get("m_ExitTime", 1),
+                        "duration": o.data.get("m_TransitionDuration", 0), "toSelf": bool(o.data.get("m_CanTransitionToSelf", 1)),
+                        "isExit": bool(o.data.get("m_IsExit", 0)), "mute": bool(o.data.get("m_Mute", 0))}
     out_states = {}
-    for fid, s in states.items():
-        out_states[s["name"]] = {"clip": s["clip"], "transitions": [tr_out[t] for t in s["transitions"] if t in tr_out]}
-    return {"default": states.get(default, {}).get("name"), "states": out_states,
-            "any": [tr_out[t] for _, t in trans if t in tr_out], "params": params}
+    for fid, st in states.items():
+        st["transitions"] = [trs[t] for t in st["transitions"] if t in trs and not trs[t]["mute"]]
+        out_states[st["name"]] = st
+    out = {"default": default, "params": params, "states": out_states,
+           "any": [trs[t] for t in any_tr if t in trs and not trs[t]["mute"]]}
+    _ctrl_cache[p] = out
+    return out
+
+
+_clip_cache = {}
+
+
+def _keys(curve, comp=None):
+    out = []
+    for k in (curve.get("m_Curve") or []):
+        v = k.get("value")
+        i = k.get("inSlope", 0)
+        o = k.get("outSlope", 0)
+        if comp is not None:
+            v = (v or {}).get(comp, 0)
+            i = (i or {}).get(comp, 0) if isinstance(i, dict) else 0
+            o = (o or {}).get(comp, 0) if isinstance(o, dict) else 0
+        out.append([k.get("time", 0), v, i, o])
+    return out
 
 
 def clip_data(path):
+    if path in _clip_cache:
+        return _clip_cache[path]
+    res = None
     docs = uy.load(path)
     for o in docs.values():
-        if o.type == "AnimationClip":
-            curves = []
-            for fc in o.data.get("m_FloatCurves") or []:
-                keys = [[k["time"], k["value"], k.get("inSlope", 0), k.get("outSlope", 0)] for k in fc["curve"]["m_Curve"]]
-                curves.append({"path": fc.get("path") or "", "attr": fc.get("attribute"), "keys": keys})
-            st = o.data.get("m_AnimationClipSettings") or {}
-            return {"length": st.get("m_StopTime", 1), "loop": bool(st.get("m_LoopTime", 0)), "curves": curves}
-    return None
+        if o.type != "AnimationClip":
+            continue
+        d = o.data
+        curves = []
+        for fc in d.get("m_FloatCurves") or []:
+            curves.append({"path": fc.get("path") or "", "attr": fc.get("attribute"), "cls": fc.get("classID", 0), "keys": _keys(fc["curve"])})
+        for key, attr in (("m_PositionCurves", "m_LocalPosition"), ("m_EulerCurves", "localEulerAnglesRaw"), ("m_ScaleCurves", "m_LocalScale")):
+            for vc in d.get(key) or []:
+                for comp in ("x", "y", "z"):
+                    ks = _keys(vc["curve"], comp)
+                    if any(abs(float(k[1] or 0) - float(ks[0][1] or 0)) > 1e-6 for k in ks) or attr != "localEulerAnglesRaw" or comp == "z":
+                        curves.append({"path": vc.get("path") or "", "attr": attr + "." + comp, "cls": 4, "keys": ks})
+        pptr = []
+        for pc in d.get("m_PPtrCurves") or []:
+            ks = [[k.get("time", 0), sprite_ref(k.get("value"))] for k in pc.get("curve") or []]
+            pptr.append({"path": pc.get("path") or "", "attr": pc.get("attribute"), "keys": ks})
+        events = [[e.get("time", 0), e.get("functionName"), e.get("data") or e.get("floatParameter") or e.get("intParameter")]
+                  for e in d.get("m_Events") or []]
+        st = d.get("m_AnimationClipSettings") or {}
+        length = st.get("m_StopTime", 0)
+        res = {"name": d.get("m_Name"), "length": length, "loop": bool(st.get("m_LoopTime", 0)), "rate": d.get("m_SampleRate", 60),
+               "curves": curves, "pptr": pptr, "events": events}
+        break
+    _clip_cache[path] = res
+    return res
 
 
 def phys_material(ref):
