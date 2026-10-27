@@ -24,10 +24,18 @@ Environment=LC_ALL=C
 WantedBy=default.target
 UNIT
 systemctl --user daemon-reload
-systemctl --user enable --now belowhell-web-tunel
-echo "Tünel başlatıldı; adres birkaç saniye içinde yayınlanır:"
-for i in $(seq 1 30); do
-	grep -q "adres yayınlandı" "$HOME/.local/state/belowhell-tunel.log" 2>/dev/null && break
+LOG="$HOME/.local/state/belowhell-tunel.log"
+ONCE=$(grep -c "adres yayınlandı" "$LOG" 2>/dev/null || true)
+systemctl --user enable belowhell-web-tunel >/dev/null 2>&1
+systemctl --user restart belowhell-web-tunel
+echo "Tünel (yeniden) başlatıldı; yeni adres bekleniyor..."
+for i in $(seq 1 45); do
+	SIMDI=$(grep -c "adres yayınlandı" "$LOG" 2>/dev/null || true)
+	[ "${SIMDI:-0}" -gt "${ONCE:-0}" ] && break
 	sleep 2
 done
-grep "adres yayınlandı" "$HOME/.local/state/belowhell-tunel.log" | tail -1 || echo "Henüz yok; izlemek için: tail -f ~/.local/state/belowhell-tunel.log"
+if [ "${SIMDI:-0}" -gt "${ONCE:-0}" ]; then
+	grep "adres yayınlandı" "$LOG" | tail -1
+else
+	echo "Henüz yayınlanmadı; izlemek için: tail -f $LOG"
+fi
