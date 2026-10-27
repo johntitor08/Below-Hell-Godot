@@ -29,7 +29,7 @@ Sürekli açık sunucu (bu bilgisayarda, systemd kullanıcı servisi; aynı komu
 
 İnternete açmak için playit.gg panelinde **UDP** tüneli ekle, yerel adres `127.0.0.1:7788`.
 
-Oyunda Arena → Online Arena ekranından sunucu adresini (ip:port) girip kayıt ol, sonra "Eşleşme Bul". Sunucu hesapları, eşleştirmeyi, galibiyet kayıtlarını ve bölüm sürelerinin liderlik tablosunu tutar (`user://server_db.json`). Bağlantı şifresizdir (ENet); şifreler istemcide hash'lenip sunucuda tuzla yeniden hash'lenir.
+Oyun varsayılan olarak resmi sunucuya (`malls-correctly.tun.ply.gg:30451`) bağlanır; kendi sunucun için Online Arena ekranında ip:port gir. Kayıt ol, sonra "Eşleşme Bul". Sunucu hesapları, eşleştirmeyi, galibiyet kayıtlarını ve bölüm sürelerinin liderlik tablosunu tutar (`user://server_db.json`). Bağlantı şifresizdir (ENet); şifreler istemcide hash'lenip sunucuda tuzla yeniden hash'lenir.
 
 ## Yapı
 - `game/creature/` — CharacterBody2D yaratık, girdi kaynakları (oyuncu, bot, ağ), Öz/dönüşüm.

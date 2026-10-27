@@ -10,7 +10,7 @@ signal remote_state(st: Dictionary)
 signal remote_event(ev: Dictionary)
 signal connection_changed(online: bool)
 
-const DEFAULT_HOST := "127.0.0.1"
+const OFFICIAL_SERVER := "malls-correctly.tun.ply.gg:30451"
 const DEFAULT_PORT := 7788
 const SALT := "belowhell-v1"
 
@@ -62,7 +62,8 @@ func _process(delta: float) -> void:
 			_save_db()
 
 func host_address() -> String:
-	return str(Game.settings.get("server", DEFAULT_HOST + ":" + str(DEFAULT_PORT)))
+	var s := str(Game.settings.get("server", ""))
+	return s if s != "" else OFFICIAL_SERVER
 
 func connect_to_server() -> void:
 	if connected or _connecting:
