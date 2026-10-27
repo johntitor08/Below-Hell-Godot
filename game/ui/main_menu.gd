@@ -162,7 +162,8 @@ func _build_buttons() -> void:
 	_buttons.add_child(_btn(Game.t("arena"), func(): Transition.go("res://game/arena/arena_menu.tscn")))
 	_buttons.add_child(_btn(Game.t("bestiary"), func(): Transition.go("res://game/ui/bestiary.tscn")))
 	_buttons.add_child(_btn(Game.t("settings"), func(): Transition.go("res://game/ui/settings.tscn")))
-	_buttons.add_child(_btn(Game.t("quit"), func(): get_tree().quit()))
+	if not OS.has_feature("web"):
+		_buttons.add_child(_btn(Game.t("quit"), func(): get_tree().quit()))
 	_focus_first.call_deferred()
 	var i := 0
 	for b in _buttons.get_children():

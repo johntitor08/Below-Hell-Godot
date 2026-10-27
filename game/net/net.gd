@@ -11,6 +11,7 @@ signal remote_event(ev: Dictionary)
 signal connection_changed(online: bool)
 
 const OFFICIAL_SERVER := "malls-correctly.tun.ply.gg:30451"
+const WEB_ADDRESS_URL := "https://raw.githubusercontent.com/johntitor08/Below-Hell-Godot/sunucu/adres.json"
 const DEFAULT_PORT := 7788
 const SALT := "belowhell-v1"
 
@@ -19,7 +20,7 @@ var connected := false
 var username := ""
 var stats := {}
 var match_info := {}
-var _peer: ENetMultiplayerPeer
+var _peer: MultiplayerPeer
 var _connecting := false
 
 var _db_path := "user://server_db.json"
@@ -69,28 +70,70 @@ func connect_to_server() -> void:
 	if connected or _connecting:
 		return
 	var addr := host_address()
+	if OS.has_feature("web") and not (addr.begins_with("ws://") or addr.begins_with("wss://")):
+		_connecting = true
+		status_changed.emit("…")
+		var url := await _fetch_web_address()
+		_connecting = false
+		if url == "":
+			status_changed.emit(Game.t("offline"))
+			connection_changed.emit(false)
+			return
+		addr = url
+	if addr.begins_with("ws://") or addr.begins_with("wss://"):
+		var w := WebSocketMultiplayerPeer.new()
+		w.inbound_buffer_size = 1 << 20
+		w.outbound_buffer_size = 1 << 20
+		if w.create_client(addr) != OK:
+			status_changed.emit(Game.t("offline"))
+			connection_changed.emit(false)
+			return
+		_begin(w)
+		return
 	var host := addr
 	var port := DEFAULT_PORT
 	var i := addr.rfind(":")
 	if i > 0:
 		host = addr.substr(0, i)
 		port = int(addr.substr(i + 1))
-	_peer = ENetMultiplayerPeer.new()
-	var err := _peer.create_client(host, port)
-	if err == OK:
-		_peer.host.compress(ENetConnection.COMPRESS_RANGE_CODER)
-	if err != OK:
+	if not host.is_valid_ip_address():
+		var v4 := IP.resolve_hostname(host, IP.TYPE_IPV4)
+		if v4 != "":
+			host = v4
+	var e := ENetMultiplayerPeer.new()
+	if e.create_client(host, port) != OK:
 		status_changed.emit(Game.t("offline"))
 		connection_changed.emit(false)
 		return
+	e.host.compress(ENetConnection.COMPRESS_RANGE_CODER)
+	_begin(e)
+
+func _begin(p: MultiplayerPeer) -> void:
+	_peer = p
 	_connecting = true
-	multiplayer.multiplayer_peer = _peer
+	multiplayer.multiplayer_peer = p
 	if not multiplayer.connected_to_server.is_connected(_on_connected):
 		multiplayer.connected_to_server.connect(_on_connected)
 		multiplayer.connection_failed.connect(_on_failed)
 		multiplayer.server_disconnected.connect(_on_lost)
 	status_changed.emit("…")
-	get_tree().create_timer(6.0).timeout.connect(_connect_timeout)
+	get_tree().create_timer(8.0).timeout.connect(_connect_timeout)
+
+func _fetch_web_address() -> String:
+	var req := HTTPRequest.new()
+	add_child(req)
+	var err := req.request(WEB_ADDRESS_URL + "?t=" + str(Time.get_unix_time_from_system()))
+	if err != OK:
+		req.queue_free()
+		return ""
+	var res: Array = await req.request_completed
+	req.queue_free()
+	if int(res[1]) != 200:
+		return ""
+	var v = JSON.parse_string((res[3] as PackedByteArray).get_string_from_utf8())
+	if v is Dictionary:
+		return str(v.get("wss", ""))
+	return ""
 
 func _connect_timeout() -> void:
 	if _connecting and not connected:
@@ -218,13 +261,29 @@ func _cl_stats(st: Dictionary) -> void:
 func _start_server(port: int) -> void:
 	is_server = true
 	_load_db()
-	_peer = ENetMultiplayerPeer.new()
-	var err := _peer.create_server(port, 256)
+	var e := ENetMultiplayerPeer.new()
+	var err := e.create_server(port, 256)
 	if err != OK:
 		printerr("[sunucu] port %d açılamadı: %s" % [port, error_string(err)])
 		get_tree().quit(1)
 		return
-	_peer.host.compress(ENetConnection.COMPRESS_RANGE_CODER)
+	e.host.compress(ENetConnection.COMPRESS_RANGE_CODER)
+	var ws_port := port + 1
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("--ws-port="):
+			ws_port = int(a.substr(10))
+	_peer = e
+	if ws_port > 0:
+		var w := WebSocketMultiplayerPeer.new()
+		w.inbound_buffer_size = 1 << 20
+		w.outbound_buffer_size = 1 << 20
+		if w.create_server(ws_port) == OK:
+			var dual := DualPeer.new()
+			dual.setup(e, w)
+			_peer = dual
+			print("[sunucu] tarayıcı oyuncuları için WebSocket: %d (TCP)" % ws_port)
+		else:
+			print("[sunucu] UYARI: WebSocket portu %d açılamadı, yalnızca UDP" % ws_port)
 	multiplayer.multiplayer_peer = _peer
 	multiplayer.peer_disconnected.connect(_on_peer_left)
 	print("[sunucu] Below Hell sunucusu %d portunda dinliyor" % port)
