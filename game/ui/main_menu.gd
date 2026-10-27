@@ -163,8 +163,7 @@ func _build_buttons() -> void:
 	_buttons.add_child(_btn(Game.t("bestiary"), func(): Transition.go("res://game/ui/bestiary.tscn")))
 	_buttons.add_child(_btn(Game.t("settings"), func(): Transition.go("res://game/ui/settings.tscn")))
 	_buttons.add_child(_btn(Game.t("quit"), func(): get_tree().quit()))
-	var first := _buttons.get_child(0) as Button
-	first.grab_focus.call_deferred()
+	_focus_first.call_deferred()
 	var i := 0
 	for b in _buttons.get_children():
 		b.modulate.a = 0.0
@@ -172,6 +171,10 @@ func _build_buttons() -> void:
 		tw.tween_interval(0.08 * i)
 		tw.tween_property(b, "modulate:a", 1.0, 0.3)
 		i += 1
+
+func _focus_first() -> void:
+	if is_inside_tree() and _buttons != null and is_instance_valid(_buttons) and _buttons.get_child_count() > 0:
+		(_buttons.get_child(0) as Button).grab_focus()
 
 func _build_footer() -> void:
 	var h := HBoxContainer.new()
@@ -190,7 +193,7 @@ func _build_footer() -> void:
 		b.pressed.connect(func(): Game.set_lang(code))
 		h.add_child(b)
 	var ver := Label.new()
-	ver.text = "v1.0 · Godot"
+	ver.text = "v%s · Godot" % ProjectSettings.get_setting("application/config/version", "1.0")
 	ver.add_theme_font_size_override("font_size", 18)
 	ver.add_theme_color_override("font_color", Color(0.6, 0.5, 0.7, 0.7))
 	ver.set_anchors_preset(Control.PRESET_BOTTOM_LEFT)
