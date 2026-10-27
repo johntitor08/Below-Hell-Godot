@@ -49,7 +49,12 @@ const TEXT := {
 	"find_match": ["Eşleşme Bul", "Find Match"], "searching": ["Rakip aranıyor…", "Searching for an opponent…"],
 	"offline": ["Sunucuya bağlanılamadı", "Couldn't reach the server"], "cancel": ["İptal", "Cancel"], "p1": ["Oyuncu 1", "Player 1"],
 	"p2": ["Oyuncu 2", "Player 2"], "cpu": ["Bilgisayar", "CPU"], "victory": ["Zafer", "Victory"], "defeat": ["Yenilgi", "Defeat"],
-	"rematch": ["Rövanş", "Rematch"], "tagline": ["Öz topla. Dönüş. Yukarı tırman.", "Gather Essence. Transform. Climb out."],
+	"rematch": ["Rövanş", "Rematch"], "boss_down": ["Bekçi düştü · kapı açıldı", "The warden falls · the gate opens"],
+	"boss_first": ["Önce bekçiyi yen", "Defeat the warden first"], "no_room": ["Bu forma burada yer yok", "No room for that form here"], "opponent_left": ["Rakip ayrıldı", "Opponent left"],
+	"logged_in_as": ["Giriş yapıldı:", "Signed in as"], "record": ["Galibiyet / Mağlubiyet", "Wins / Losses"], "server": ["Sunucu", "Server"],
+	"err_name": ["Kullanıcı adı 3-16 harf/rakam olmalı", "Username must be 3-16 letters/digits"], "err_taken": ["Bu ad alınmış", "That name is taken"],
+	"err_bad": ["Kullanıcı adı ya da şifre yanlış", "Wrong username or password"], "err_short": ["Şifre en az 6 karakter olmalı", "Password must be at least 6 characters"],
+	"best_times": ["En iyi süreler", "Best times"], "arena_top": ["Arena · en çok galibiyet", "Arena · most wins"], "connect": ["Bağlan", "Connect"], "tagline": ["Öz topla. Dönüş. Yukarı tırman.", "Gather Essence. Transform. Climb out."],
 }
 
 func t(key: String) -> String:

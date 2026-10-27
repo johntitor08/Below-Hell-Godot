@@ -47,7 +47,7 @@ func transform_to(d: CreatureDef) -> bool:
 		message.emit(Game.t("need_oz"), Color(1, 0.5, 0.45))
 		return false
 	if not _fits(d):
-		message.emit("✕", Color(1, 0.5, 0.45))
+		message.emit(Game.t("no_room"), Color(1, 0.5, 0.45))
 		return false
 	oz -= d.oz_cost
 	stack.append(d)

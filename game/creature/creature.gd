@@ -56,6 +56,8 @@ var abilities: Array = []
 var stamina := 1.0
 var max_stamina := 1.0
 var air := 4.0
+var puppet := false
+var net_state: Array = []
 var _drown_t := 0.0
 
 var visual: Node2D
@@ -151,8 +153,58 @@ func body_width() -> float:
 func center() -> Vector2:
 	return global_position + Vector2(0, -body_height() * 0.5)
 
+func snapshot() -> Array:
+	return [snappedf(global_position.x, 0.1), snappedf(global_position.y, 0.1), int(velocity.x), int(velocity.y), facing, hp, max_hp, alive, def.id, snappedf(_attack_anim, 0.01), stealth, is_on_floor()]
+
+func apply_snapshot(a: Array) -> void:
+	net_state = a
+
+func _puppet(delta: float) -> void:
+	if net_state.size() < 12:
+		_animate(delta)
+		return
+	var a := net_state
+	if str(a[8]) != def.id:
+		set_form(Creatures.get_def(str(a[8])))
+		Fx.burst(center(), "transform", def.accent)
+	var target := Vector2(float(a[0]), float(a[1]))
+	if global_position.distance_to(target) > 220.0:
+		global_position = target
+	else:
+		global_position = global_position.lerp(target, minf(1.0, delta * 18.0))
+	velocity = Vector2(float(a[2]), float(a[3]))
+	facing = int(a[4])
+	var nhp := int(a[5])
+	max_hp = int(a[6])
+	if nhp < hp and alive:
+		_hurt_anim = 1.0
+		Fx.flash(sprite, Color(1, 0.3, 0.3))
+		Fx.popup(center() + Vector2(0, -body_height() * 0.6), str(hp - nhp), Color(1, 0.45, 0.4))
+		Fx.burst(center(), "hit", Color(1, 0.4, 0.35), 10)
+		Audio.play("hit", -4.0)
+	if nhp != hp:
+		hp = nhp
+		hp_changed.emit(hp, max_hp)
+	var nalive := bool(a[7])
+	if alive and not nalive:
+		alive = false
+		Fx.burst(center(), "death", def.accent, 36)
+		Audio.play("death", -4.0)
+	elif nalive and not alive:
+		alive = true
+		visual.modulate.a = 1.0
+	if float(a[9]) > _attack_anim + 0.3:
+		Audio.play("whoosh", -10.0)
+	_attack_anim = float(a[9])
+	stealth = bool(a[10])
+	_was_on_floor = bool(a[11])
+	_animate(delta)
+
 func _physics_process(delta: float) -> void:
 	_time += delta
+	if puppet:
+		_puppet(delta)
+		return
 	if input_source != null and controls_enabled and alive:
 		input_source.poll(self, input)
 	elif not controls_enabled or not alive:
@@ -434,7 +486,7 @@ func knockback(v: Vector2) -> void:
 func _animate(delta: float) -> void:
 	if visual == null:
 		return
-	var on_floor := is_on_floor()
+	var on_floor := _was_on_floor if puppet else is_on_floor()
 	var speed_ratio := clampf(absf(velocity.x) / maxf(def.run_speed(), 1.0), 0.0, 1.2)
 	var sx := 1.0
 	var sy := 1.0

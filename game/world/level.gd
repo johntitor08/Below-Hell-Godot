@@ -95,7 +95,7 @@ const GROUND_COORDS := [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i
 const LEDGE_COORDS := [Vector2i(6, 3), Vector2i(7, 3), Vector2i(8, 3)]
 const DECO_COORDS := [Vector2i(1, 1)]
 
-func _ground_coord(x: int, y: int) -> Vector2i:
+static func ground_coord(map: LevelMap, x: int, y: int) -> Vector2i:
 	var u := map.is_solid(x, y - 1)
 	var d := map.is_solid(x, y + 1)
 	var l := map.is_solid(x - 1, y)
@@ -122,32 +122,41 @@ func _ground_coord(x: int, y: int) -> Vector2i:
 		row = 2
 	return Vector2i(col, row)
 
-func _layer(n: String) -> TileMapLayer:
+static func make_layer(parent: Node, n: String) -> TileMapLayer:
 	var t := TileMapLayer.new()
 	t.name = n
 	t.tile_set = tileset()
 	t.scale = Vector2(TILE / SRC, TILE / SRC)
 	t.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	world.add_child(t)
+	parent.add_child(t)
 	return t
 
-func _build_tiles() -> void:
-	ground = _layer("Ground")
-	ledges = _layer("Ledges")
+static func build_tiles(parent: Node, map: LevelMap) -> Array:
+	var g := make_layer(parent, "Ground")
+	var l := make_layer(parent, "Ledges")
 	for y in map.height:
 		for x in map.width:
 			var c := map.at(x, y)
 			if c == "#":
-				ground.set_cell(Vector2i(x, y), 0, _ground_coord(x, y))
+				g.set_cell(Vector2i(x, y), 0, ground_coord(map, x, y))
 			elif c == "=":
-				var l := map.at(x - 1, y) == "="
-				var r := map.at(x + 1, y) == "="
+				var lf := map.at(x - 1, y) == "="
+				var rt := map.at(x + 1, y) == "="
 				var co := Vector2i(7, 3)
-				if not l:
+				if not lf:
 					co = Vector2i(6, 3)
-				elif not r:
+				elif not rt:
 					co = Vector2i(8, 3)
-				ledges.set_cell(Vector2i(x, y), 0, co)
+				l.set_cell(Vector2i(x, y), 0, co)
+	return [g, l]
+
+func _ground_coord(x: int, y: int) -> Vector2i:
+	return ground_coord(map, x, y)
+
+func _build_tiles() -> void:
+	var layers := build_tiles(world, map)
+	ground = layers[0]
+	ledges = layers[1]
 
 func _cell_pos(x: int, y: int) -> Vector2:
 	return Vector2(x * TILE, y * TILE)
@@ -265,7 +274,9 @@ func _rects(ch: String, make: Callable) -> void:
 			make.call(Rect2i(x, y, w, h))
 
 func _build_background() -> void:
-	var theme := str(map.meta.get("theme", "graveyard"))
+	add_background(self, str(map.meta.get("theme", "graveyard")), str(map.meta.get("tint", "#ffffff")))
+
+static func add_background(host: Node, theme: String, tint_hex: String) -> void:
 	var dir := "res://assets/bg/%s/" % theme
 	var factors := [0.0, 0.15, 0.3, 0.5, 0.7]
 	for i in 5:
@@ -285,11 +296,11 @@ func _build_background() -> void:
 		px.z_index = -100 + i
 		s.position = Vector2(0, -260)
 		px.add_child(s)
-		add_child(px)
-		move_child(px, 0)
+		host.add_child(px)
+		host.move_child(px, 0)
 	var tint := CanvasModulate.new()
-	tint.color = Color(str(map.meta.get("tint", "#ffffff")))
-	add_child(tint)
+	tint.color = Color(tint_hex)
+	host.add_child(tint)
 
 func _spawn_player() -> void:
 	player = Creature.new()
@@ -332,13 +343,13 @@ func _on_player_died(_c) -> void:
 
 func _on_boss_down(_e) -> void:
 	Audio.music("level", 2.0)
-	hud.toast("★", Color(1, 0.8, 0.4))
+	hud.toast(Game.t("boss_down"), Color(1, 0.8, 0.4))
 
 func complete() -> void:
 	if finished:
 		return
 	if boss != null and is_instance_valid(boss) and boss.alive:
-		hud.toast("✕", Color(1, 0.5, 0.45))
+		hud.toast(Game.t("boss_first"), Color(1, 0.5, 0.45))
 		return
 	finished = true
 	player.controls_enabled = false
@@ -352,6 +363,7 @@ func complete() -> void:
 	Game.save["level"] = maxi(int(Game.save.get("level", 0)), level_index + 1)
 	Game.save["oz_cap"] = maxi(int(Game.save.get("oz_cap", 6)), int(map.meta.get("next_cap", Game.save.get("oz_cap", 6))))
 	Game.write_save()
+	Net.submit_time(level_index, time)
 	level_completed.emit(stats)
 	hud.show_complete(stats)
 

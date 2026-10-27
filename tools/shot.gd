@@ -78,10 +78,10 @@ func _click(p: Vector2) -> void:
 
 func _run(s: String) -> void:
 	var e := Expression.new()
-	if e.parse(s, ["root", "Game", "Creatures", "Fx"]) != OK:
+	if e.parse(s, ["root", "Game", "Creatures", "Fx", "Net"]) != OK:
 		push_error("eval parse: " + s)
 		return
-	var r = e.execute([get_tree().current_scene, Game, Creatures, Fx], self)
+	var r = e.execute([get_tree().current_scene, Game, Creatures, Fx, Net], self)
 	if e.has_execute_failed():
 		push_error("eval failed: " + s + " -> " + e.get_error_text())
 	else:

@@ -6,6 +6,15 @@ var rows: PackedStringArray = []
 var width := 0
 var height := 0
 
+static func from_rows(r: Array, m := {}) -> LevelMap:
+	var lm := LevelMap.new()
+	lm.meta = m
+	lm.rows = PackedStringArray(r)
+	lm.height = lm.rows.size()
+	for row in lm.rows:
+		lm.width = maxi(lm.width, row.length())
+	return lm
+
 static func load_file(path: String) -> LevelMap:
 	var m := LevelMap.new()
 	var txt := FileAccess.get_file_as_string(path)
