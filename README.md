@@ -2,11 +2,26 @@
 
 Unity'deki *Below Hell*'in Godot 4.6 ile yeniden tasarlanmış hâli: Öz topla, 20 hayvan formuna dönüş, cehennemin altından tırman.
 
-- `game/creature/` — CharacterBody2D yaratık, girdi kaynakları, Öz/dönüşüm sistemi.
-- `game/abilities/` — 20 formun yetenekleri (dil kancası, ekolokasyon, boynuz hücumu, alev nefesi…).
-- `game/world/` — ASCII bölüm kurucusu, dünya nesneleri; bölümler `tools/make_levels.py` ile üretilir.
-- `game/ui/` — ana menü, HUD, radyal dönüşüm menüsü, tema.
+## Modlar
+- **Macera** — beş bölüm; her birinin anahtarı farklı bir form: zıplama (Kurbağa), su altı (Aksolotl/Yılan Balığı), karanlık (Yarasa), kırılabilir duvarlar (Geyik/Ayı), bekçi boss'u.
+- **Arena** — bilgisayara karşı, aynı klavyede iki kişi ya da online; 3 raund.
+- **Bestiyer** ve **Ayarlar** (ses, tam ekran, sarsıntı, Türkçe/English).
 
-Kontroller: A/D hareket, Boşluk zıplama, J saldırı, K/L yetenek, Q (basılı) dönüşüm, R formu bırak, Esc duraklat.
+## Kontroller
+A/D hareket · Boşluk zıplama · J saldırı · K / L yetenekler · Q (basılı) dönüşüm · R formu bırak (yarı iade) · Esc duraklat. Gamepad desteklenir.
+Yerel düelloda 1. oyuncu WASD + F/G/H, 2. oyuncu oklar + ./,
 
-Çalıştırma: projeyi Godot 4.6 ile açıp oynat.
+## Online
+Aynı proje başsız sunucu olarak çalışır:
+
+```bash
+./sunucu.sh            # varsayılan port 7788
+```
+
+Oyunda Arena → Online Arena ekranından sunucu adresini (ip:port) girip kayıt ol, sonra "Eşleşme Bul". Sunucu hesapları, eşleştirmeyi, galibiyet kayıtlarını ve bölüm sürelerinin liderlik tablosunu tutar (`user://server_db.json`). Bağlantı şifresizdir (ENet); şifreler istemcide hash'lenip sunucuda tuzla yeniden hash'lenir.
+
+## Yapı
+- `game/creature/` — CharacterBody2D yaratık, girdi kaynakları (oyuncu, bot, ağ), Öz/dönüşüm.
+- `game/abilities/` — 20 formun yetenekleri.
+- `game/world/` — bölüm kurucusu ve dünya nesneleri; bölümler `python3 tools/make_levels.py` ile üretilir.
+- `game/arena/`, `game/net/`, `game/ui/` — arena, ağ/sunucu, arayüz.

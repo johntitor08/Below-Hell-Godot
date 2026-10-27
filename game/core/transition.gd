@@ -21,7 +21,7 @@ func go(path: String, time := 0.35) -> void:
 	var tw := create_tween()
 	tw.tween_property(_rect, "modulate:a", 1.0, time)
 	await tw.finished
-	Engine.time_scale = 1.0
+	Fx.slowmo(1.0)
 	get_tree().paused = false
 	get_tree().change_scene_to_file(path)
 	await get_tree().process_frame

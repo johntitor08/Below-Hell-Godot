@@ -9,16 +9,23 @@ func _ready() -> void:
 	soft_tex = load("res://assets/fx/soft_circle.png")
 	square_tex = load("res://assets/fx/white_square.png")
 
+var _base_scale := 1.0
+var _stopping := false
+
 func hitstop(sec := 0.06, scale := 0.05) -> void:
-	Engine.time_scale = scale
-	var until := Time.get_ticks_msec() + int(sec * 1000.0)
-	_hitstop_until = maxi(_hitstop_until, until)
-	await get_tree().create_timer(sec, true, false, true).timeout
-	if Time.get_ticks_msec() >= _hitstop_until:
-		Engine.time_scale = 1.0
+	_hitstop_until = maxi(_hitstop_until, Time.get_ticks_msec() + int(sec * 1000.0))
+	_stopping = true
+	Engine.time_scale = minf(scale, _base_scale)
 
 func slowmo(scale: float) -> void:
-	Engine.time_scale = scale
+	_base_scale = scale
+	if not _stopping:
+		Engine.time_scale = scale
+
+func _process(_d: float) -> void:
+	if _stopping and Time.get_ticks_msec() >= _hitstop_until:
+		_stopping = false
+		Engine.time_scale = _base_scale
 
 func shake(amount := 8.0, duration := 0.25) -> void:
 	if not Game.settings.get("shake", true):

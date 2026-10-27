@@ -616,10 +616,13 @@ class FireBreath extends Ability:
 				fx.direction = Vector2(creature.facing, 0.15)
 			if tick_t <= 0.0:
 				tick_t = 0.18
-				var p := creature.center() + Vector2(creature.facing * TILE * 2.2, 0)
-				for f in foes_in_radius(p, TILE * 2.0):
-					hit(f, 5, Vector2(220, -120))
-				for b in breakables_in_radius(p, TILE * 1.8):
+				var o := creature.center()
+				for f in foes_in_radius(o, TILE * 7.0):
+					var d: Vector2 = (f.center() if f.has_method("center") else f.global_position) - o
+					var ahead := d.x * creature.facing
+					if ahead > -20.0 and ahead < TILE * 6.0 and absf(d.y) < TILE * 1.2 + ahead * 0.35:
+						hit(f, 5, Vector2(220, -120))
+				for b in breakables_in_radius(o + Vector2(creature.facing * TILE * 2.5, 0), TILE * 2.5):
 					b.break_by(3)
 				Fx.shake(2.0, 0.08)
 		elif fx != null and is_instance_valid(fx):

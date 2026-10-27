@@ -246,8 +246,11 @@ func _move(delta: float) -> void:
 	if absf(x) > 0.2:
 		facing = 1 if x > 0.0 else -1
 	var target := x * def.run_speed() * speed_mult
-	if in_water and def.has("underwater_speed_9"):
-		target *= 1.6
+	if in_water:
+		if def.has("underwater_speed_9"):
+			target *= 1.6
+		elif not breathes_water():
+			target *= 0.5
 	var rate := (ACCEL if absf(x) > 0.05 else DECEL) * (1.0 if on_floor else AIR_CONTROL)
 	velocity.x = move_toward(velocity.x, target, rate * delta)
 	climbing = false

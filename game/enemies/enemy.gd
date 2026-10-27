@@ -8,7 +8,7 @@ const KINDS := {
 	"imp": {"tex": "res://assets/props/imp.png", "h": 70.0, "hp": 22, "speed": 170.0, "chase": 300.0, "dmg": 8, "drop": 1, "armor": 1.0, "fly": false, "sight": 520.0},
 	"skeleton": {"tex": "res://assets/props/skeleton.png", "h": 110.0, "hp": 46, "speed": 110.0, "chase": 210.0, "dmg": 14, "drop": 2, "armor": 0.5, "fly": false, "sight": 460.0},
 	"wraith": {"tex": "res://assets/props/wraith.png", "h": 96.0, "hp": 28, "speed": 120.0, "chase": 250.0, "dmg": 10, "drop": 2, "armor": 1.0, "fly": true, "sight": 600.0},
-	"boss": {"tex": "res://assets/props/imp.png", "h": 240.0, "hp": 420, "speed": 160.0, "chase": 260.0, "dmg": 18, "drop": 0, "armor": 1.0, "fly": false, "sight": 2000.0},
+	"boss": {"tex": "res://assets/props/imp.png", "h": 240.0, "hp": 340, "speed": 160.0, "chase": 260.0, "dmg": 18, "drop": 0, "armor": 1.0, "fly": false, "sight": 2000.0},
 }
 
 var kind := "imp"

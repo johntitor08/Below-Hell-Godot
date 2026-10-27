@@ -54,7 +54,7 @@ const TEXT := {
 	"logged_in_as": ["Giriş yapıldı:", "Signed in as"], "record": ["Galibiyet / Mağlubiyet", "Wins / Losses"], "server": ["Sunucu", "Server"],
 	"err_name": ["Kullanıcı adı 3-16 harf/rakam olmalı", "Username must be 3-16 letters/digits"], "err_taken": ["Bu ad alınmış", "That name is taken"],
 	"err_bad": ["Kullanıcı adı ya da şifre yanlış", "Wrong username or password"], "err_short": ["Şifre en az 6 karakter olmalı", "Password must be at least 6 characters"],
-	"best_times": ["En iyi süreler", "Best times"], "arena_top": ["Arena · en çok galibiyet", "Arena · most wins"], "connect": ["Bağlan", "Connect"], "tagline": ["Öz topla. Dönüş. Yukarı tırman.", "Gather Essence. Transform. Climb out."],
+	"best_times": ["En iyi süreler", "Best times"], "arena_top": ["Arena · en çok galibiyet", "Arena · most wins"], "connect": ["Bağlan", "Connect"], "server_hint": ["Arkadaşının ya da kendi sunucunun adresi (ip:port)", "Your own or a friend's server address (ip:port)"], "tagline": ["Öz topla. Dönüş. Yukarı tırman.", "Gather Essence. Transform. Climb out."],
 }
 
 func t(key: String) -> String:

@@ -67,7 +67,7 @@ func _show_connect() -> void:
 	_left.add_child(_addr)
 	var b := UI.button(Game.t("connect"), _connect, 0, 64)
 	_left.add_child(b)
-	_left.add_child(UI.label("Sunucu: ./sunucu.sh  ·  Server: ./sunucu.sh", 20, null, UI.MUTED))
+	_left.add_child(UI.label(Game.t("server_hint"), 20, null, UI.MUTED))
 	b.grab_focus.call_deferred()
 
 func _connect() -> void:

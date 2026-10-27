@@ -11,7 +11,7 @@ var _parade: Array = []
 var _sub: Control
 
 func _ready() -> void:
-	Engine.time_scale = 1.0
+	Fx.slowmo(1.0)
 	get_tree().paused = false
 	Audio.music("menu")
 	_build_bg()
