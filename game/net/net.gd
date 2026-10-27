@@ -41,7 +41,21 @@ func _ready() -> void:
 				port = int(a.substr(7))
 		_start_server(port)
 
+func _notification(what: int) -> void:
+	if is_server and (what == NOTIFICATION_WM_CLOSE_REQUEST or what == NOTIFICATION_PREDELETE) and _dirty:
+		_save_db()
+
+func _exit_tree() -> void:
+	if is_server and _dirty:
+		_save_db()
+
 func _process(delta: float) -> void:
+	if is_server and FileAccess.file_exists("user://kapat"):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path("user://kapat"))
+		_save_db()
+		print("[sunucu] kapat isteği: kaydedildi, çıkılıyor")
+		get_tree().quit()
+		return
 	if is_server and _dirty:
 		_save_t -= delta
 		if _save_t <= 0.0:
@@ -62,6 +76,8 @@ func connect_to_server() -> void:
 		port = int(addr.substr(i + 1))
 	_peer = ENetMultiplayerPeer.new()
 	var err := _peer.create_client(host, port)
+	if err == OK:
+		_peer.host.compress(ENetConnection.COMPRESS_RANGE_CODER)
 	if err != OK:
 		status_changed.emit(Game.t("offline"))
 		connection_changed.emit(false)
@@ -207,6 +223,7 @@ func _start_server(port: int) -> void:
 		printerr("[sunucu] port %d açılamadı: %s" % [port, error_string(err)])
 		get_tree().quit(1)
 		return
+	_peer.host.compress(ENetConnection.COMPRESS_RANGE_CODER)
 	multiplayer.multiplayer_peer = _peer
 	multiplayer.peer_disconnected.connect(_on_peer_left)
 	print("[sunucu] Below Hell sunucusu %d portunda dinliyor" % port)

@@ -18,6 +18,15 @@ Aynı proje başsız sunucu olarak çalışır:
 ./sunucu.sh            # varsayılan port 7788
 ```
 
+Sürekli açık sunucu (bu bilgisayarda, systemd kullanıcı servisi; aynı komut günceller):
+
+```bash
+./deploy/kur.sh        # derler, kurar, başlatır
+./deploy/log.sh        # canlı log
+```
+
+İnternete açmak için playit.gg panelinde **UDP** tüneli ekle, yerel adres `127.0.0.1:7788`.
+
 Oyunda Arena → Online Arena ekranından sunucu adresini (ip:port) girip kayıt ol, sonra "Eşleşme Bul". Sunucu hesapları, eşleştirmeyi, galibiyet kayıtlarını ve bölüm sürelerinin liderlik tablosunu tutar (`user://server_db.json`). Bağlantı şifresizdir (ENet); şifreler istemcide hash'lenip sunucuda tuzla yeniden hash'lenir.
 
 ## Yapı
