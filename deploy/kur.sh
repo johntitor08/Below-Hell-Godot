@@ -41,4 +41,4 @@ sleep 3
 systemctl --user --no-pager status belowhell-sunucu | head -5
 ss -ulnp | grep ":$PORT " || echo "UYARI: $PORT/UDP dinlenmiyor, logu kontrol et: journalctl --user -u belowhell-sunucu"
 echo
-echo "Tamam. İnternete açmak için playit.gg panelinde UDP tüneli ekle: yerel adres 127.0.0.1:$PORT"
+echo "Tamam. Resmi adres: malls-correctly.tun.ply.gg:30451 (playit UDP tüneli → 127.0.0.1:$PORT)"
