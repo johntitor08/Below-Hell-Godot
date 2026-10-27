@@ -1,6 +1,6 @@
 # Below Hell — Godot
 
-İndir: https://johntitortheprog.itch.io/below-hell (Linux, Windows)
+Oyna / indir: https://johntitortheprog.itch.io/below-hell (tarayıcı, Linux, Windows)
 
 Unity'deki *Below Hell*'in Godot 4.6 ile yeniden tasarlanmış hâli: Öz topla, 20 hayvan formuna dönüş, cehennemin altından tırman.
 
@@ -28,6 +28,12 @@ Sürekli açık sunucu (bu bilgisayarda, systemd kullanıcı servisi; aynı komu
 ```
 
 İnternete açmak için playit.gg panelinde **UDP** tüneli ekle, yerel adres `127.0.0.1:7788`.
+
+Tarayıcı oyuncuları WebSocket (TCP 7789) ile bağlanır. Cloudflare tünelini kurmak için:
+
+```bash
+./deploy/web-tunel-kur.sh   # cloudflared + gh gerekir; wss adresini sunucu/adres.json'a yazar
+```
 
 Oyun varsayılan olarak resmi sunucuya (`malls-correctly.tun.ply.gg:30451`) bağlanır; kendi sunucun için Online Arena ekranında ip:port gir. Kayıt ol, sonra "Eşleşme Bul". Sunucu hesapları, eşleştirmeyi, galibiyet kayıtlarını ve bölüm sürelerinin liderlik tablosunu tutar (`user://server_db.json`). Bağlantı şifresizdir (ENet); şifreler istemcide hash'lenip sunucuda tuzla yeniden hash'lenir.
 
