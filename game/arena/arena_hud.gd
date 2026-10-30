@@ -60,13 +60,13 @@ func _controls_card() -> void:
 	rt.add_theme_font_override("bold_font", load("res://assets/fonts/body_bold.otf"))
 	var rule := "[center][color=#a895b8]%s[/color][/center]" % ("İki raund alan kazanır · rakibi kenardan düşürmek de sayılır" if tr else "First to two rounds · knocking your rival off the edge counts too")
 	if arena.mode == "local":
-		card.custom_minimum_size = Vector2(1200, 0)
-		card.position = Vector2(-600, -300)
-		var rows := [[["Hareket", "Move"], "A / D", "← / →"], [["Zıpla", "Jump"], "Boşluk", "Enter · Num0"], [["Saldırı", "Attack"], "F", ". · Num1"], [["Yetenekler", "Abilities"], "G · H", ", / · Num2 Num3"]]
-		var s := "[table=3][cell][/cell][cell][center][color=#8ccaff][b]%s[/b][/color][/center][/cell][cell][center][color=#ff8c80][b]%s[/b][/color][/center][/cell]" % [Game.t("p1"), Game.t("p2")]
+		card.custom_minimum_size = Vector2(940, 0)
+		card.position = Vector2(-470, -300)
+		var rows := [[["Hareket", "Move"], "A / D", "← / →"], [["Zıpla", "Jump"], "Boşluk" if tr else "Space", "Enter · Num0"], [["Saldırı", "Attack"], "F", ". · Num1"], [["Yetenekler", "Abilities"], "G · H", ", / · Num2 Num3"]]
+		var s := "[center][table=3][cell][/cell][cell][center][color=#8ccaff][b]%s[/b][/color][/center][/cell][cell][center][color=#ff8c80][b]%s[/b][/color][/center][/cell]" % [Game.t("p1"), Game.t("p2")]
 		for r in rows:
-			s += "[cell][color=#a895b8]%s[/color]   [/cell][cell][center][b][color=#ffe7b0]%s[/color][/b][/center][/cell][cell][center][b][color=#ffe7b0]%s[/color][/b][/center][/cell]" % [r[0][0] if tr else r[0][1], r[1], r[2]]
-		rt.text = s + "[/table]\n" + rule
+			s += "[cell][color=#a895b8]%s[/color]   [/cell][cell][center][b][color=#ffe7b0]%s[/color][/b]      [/center][/cell][cell][center][b][color=#ffe7b0]%s[/color][/b][/center][/cell]" % [r[0][0] if tr else r[0][1], r[1], r[2]]
+		rt.text = s + "[/table][/center]\n" + rule
 	else:
 		card.custom_minimum_size = Vector2(1100, 0)
 		card.position = Vector2(-550, -220)

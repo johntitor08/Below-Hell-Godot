@@ -170,7 +170,7 @@ def level3():
 
 def level4():
     m = Map(128, 20, {"name_tr": "IV · Kemik Ocağı", "name_en": "IV · Bone Quarry",
-                      "hint_tr": "Çatlak duvarı Geyik kırar · Ağır kayayı yalnızca Ayı ve Ejderha", "hint_en": "The Stag breaks cracked walls · only Bear and Dragon smash boulders",
+                      "hint_tr": "Çatlak duvarı Geyik kırar · Ağır kayayı yalnızca Ayı ve Ejderha", "hint_en": "The Deer breaks cracked walls · only Bear and Dragon smash boulders",
                       "theme": "snow", "music": "level2", "oz_cap": 10, "next_cap": 12, "tint": "#e8ecff"})
     m.floor(1, 126, 15)
     m.fill(1, 0, 126, 1, "#")

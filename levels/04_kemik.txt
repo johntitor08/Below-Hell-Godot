@@ -1,7 +1,7 @@
 name_tr: IV · Kemik Ocağı
 name_en: IV · Bone Quarry
 hint_tr: Çatlak duvarı Geyik kırar · Ağır kayayı yalnızca Ayı ve Ejderha
-hint_en: The Stag breaks cracked walls · only Bear and Dragon smash boulders
+hint_en: The Deer breaks cracked walls · only Bear and Dragon smash boulders
 theme: snow
 music: level2
 oz_cap: 10

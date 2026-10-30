@@ -94,7 +94,7 @@ func _body(i: int) -> String:
 					"Pahalı bir formla ölmek Öz'ü yakar. Tehlikeden önce formu %s ile bırakıp Öz'ü cebe koymak, ya da ucuz bir formla yetinmek çoğu zaman daha akıllıcadır." % k("R")
 			return h("What is Essence?") + \
 				"The [color=%s]purple orbs[/color] are Essence: small ones give [b]1[/b], big ones [b]3[/b]. Defeated enemies drop Essence too.\n" % OZ + \
-				"The purple dots at the top left show your Essence; the number of dots is your pouch [b]limit[/b].\n\n" + \
+				"The purple dots at the top left show your Essence; the number of dots is your pouch [b]limit[/b]. A full pouch takes no more Essence.\n\n" + \
 				h("How to transform") + \
 				"1. [b]Hold[/b] %s: time slows and the 20 creatures open in a ring.\n" % k("Q") + \
 				"2. Point at a creature with the mouse or %s. Its name, stats and ability appear in the middle; the number is its [b]cost[/b].\n" % k("WASD / arrows") + \
@@ -109,7 +109,7 @@ func _body(i: int) -> String:
 				"Dying in an expensive form burns your Essence. Dropping it with %s before danger, or settling for a cheaper form, is often smarter." % k("R")
 		1:
 			var rows := [
-				[["Hareket", "Move"], "A / D"], [["Zıpla (uçarken yüksel)", "Jump (rise while flying)"], "Boşluk / Space"],
+				[["Hareket", "Move"], "A / D"], [["Zıpla (uçarken yüksel)", "Jump (rise while flying)"], "Boşluk" if tr else "Space"],
 				[["Aşağı / alçal", "Down / descend"], "S"], [["Saldırı", "Attack"], "J"], [["1. yetenek", "1st ability"], "K"],
 				[["2. yetenek", "2nd ability"], "L"], [["Dönüşüm menüsü (basılı tut)", "Transform menu (hold)"], "Q"],
 				[["Formu bırak (yarı iade)", "Drop form (half refund)"], "R"], [["Duraklat", "Pause"], "Esc"],
@@ -139,9 +139,9 @@ func _body(i: int) -> String:
 				"[b]I · Awakening[/b] — The fly can't clear the tall wall: the %s (3 Essence) jumps it, %s fires its tongue grapple. Pink rings are grapple points.\n" % [k("Frog"), k("K")] + \
 				"[b]II · Sunken Waters[/b] — A sealed underwater tunnel: air-breathers drown. The %s or the %s gets through.\n" % [k("Axolotl"), k("Eel")] + \
 				"[b]III · Blind Caves[/b] — Spikes hide in the dark. The %s sees in darkness; %s echolocation also reveals hidden paths.\n" % [k("Bat"), k("K")] + \
-				"[b]IV · Bone Quarry[/b] — The %s (%s charge) breaks cracked walls; boulders need the %s or %s. The door needs weight on the plate: a %s clone (%s) works.\n" % [k("Stag"), k("K"), k("Bear"), k("Dragon"), k("Slime"), k("K")] + \
+				"[b]IV · Bone Quarry[/b] — The %s (%s charge) breaks cracked walls; boulders need the %s or %s. The door needs weight on the plate: a %s clone (%s) works.\n" % [k("Deer"), k("K"), k("Bear"), k("Dragon"), k("Slime"), k("K")] + \
 				"[b]V · Throne of Fire[/b] — Defeat the warden, then leave through the gate. Your pouch holds 12: the %s is possible.\n\n" % k("Dragon") + \
-				"Poles with a purple flame are [b]checkpoints[/b]."
+				"Poles with a purple flame are [b]checkpoints[/b]. Die or fall, and you continue from the last one."
 		3:
 			var s3 := h("Kurallar" if tr else "Rules")
 			if tr:
@@ -167,7 +167,7 @@ func _body(i: int) -> String:
 
 static func _duel_table(tr: bool) -> String:
 	var rows := [
-		[["Hareket", "Move"], "A / D", "← / →"], [["Zıpla", "Jump"], "Boşluk / Space", "Enter · Num 0"],
+		[["Hareket", "Move"], "A / D", "← / →"], [["Zıpla", "Jump"], "Boşluk" if tr else "Space", "Enter · Num 0"],
 		[["Uçarken yukarı/aşağı", "Fly up/down"], "W / S", "↑ / ↓"], [["Saldırı", "Attack"], "F", ". · Num 1"],
 		[["1. yetenek", "1st ability"], "G", ", · Num 2"], [["2. yetenek", "2nd ability"], "H", "/ · Num 3"],
 	]

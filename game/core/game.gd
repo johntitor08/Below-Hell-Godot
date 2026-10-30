@@ -55,7 +55,7 @@ const TEXT := {
 	"tip_start": ["Mor küreler [b]Öz[/b]'dür. Üstlerinden geçerek topla.", "The purple orbs are [b]Essence[/b]. Fly through them to collect."],
 	"tip_first_oz": ["Öz topladın! Kurbağa'ya dönüşmek için [b]3 Öz[/b] gerekiyor.", "Essence collected! The Frog costs [b]3 Essence[/b]."],
 	"tip_can_transform": ["Yeterli Öz var! [b]Q[/b]'yu basılı tut, fareyle [b]Kurbağa[/b]'yı seç, Q'yu bırak.", "Enough Essence! Hold [b]Q[/b], point at the [b]Frog[/b], release Q."],
-	"tip_transformed": ["Kurbağa: [b]Boşluk[/b] yüksek zıplar, [b]K[/b] dil kancası atar, [b]J[/b] saldırır. Sağdaki duvarı aş!", "Frog: [b]Space[/b] jumps high, [b]K[/b] fires the tongue, [b]J[/b] attacks. Clear the wall ahead!"],
+	"tip_transformed": ["Kurbağa: [b]Boşluk[/b] yüksek zıplar, [b]K[/b] dil kancası atar, [b]J[/b] saldırır. Sağdaki duvarı aş!", "Frog: [b]Space[/b] jumps high, [b]K[/b] fires the tongue, [b]J[/b] attacks. Get over the wall to the right!"],
 	"tip_died": ["Ölünce harcanan Öz gider. [b]R[/b] ile formu bırakırsan yarısı geri gelir.", "Dying loses the spent Essence. Dropping a form with [b]R[/b] refunds half."],
 	"tip_checkpoint": ["Mor alevli direk bir [b]kontrol noktası[/b]: ölürsen buradan devam edersin.", "A purple-flame pole is a [b]checkpoint[/b]: you continue here if you die."],
 	"tip_more": ["Tüm kurallar: Ana Menü → [b]Nasıl Oynanır[/b]", "All the rules: Main Menu → [b]How to Play[/b]"], "opponent_left": ["Rakip ayrıldı", "Opponent left"],
