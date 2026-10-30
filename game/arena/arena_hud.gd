@@ -39,6 +39,45 @@ func bind(a: Arena) -> void:
 		_build_side(i)
 		a.fighters[i].hp_changed.connect(_on_hp.bind(i))
 		_on_hp(a.fighters[i].hp, a.fighters[i].max_hp, i)
+	_controls_card()
+
+func _controls_card() -> void:
+	var tr := Game.lang == "tr"
+	var card := PanelContainer.new()
+	var st := UI.panel(18, Color(0.1, 0.07, 0.13, 0.92), UI.GOLD)
+	st.content_margin_left = 30
+	st.content_margin_right = 30
+	card.add_theme_stylebox_override("panel", st)
+	card.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
+	card.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var rt := RichTextLabel.new()
+	rt.bbcode_enabled = true
+	rt.fit_content = true
+	rt.scroll_active = false
+	rt.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	rt.add_theme_font_size_override("normal_font_size", 26)
+	rt.add_theme_font_size_override("bold_font_size", 26)
+	rt.add_theme_font_override("bold_font", load("res://assets/fonts/body_bold.otf"))
+	var rule := "[center][color=#a895b8]%s[/color][/center]" % ("İki raund alan kazanır · rakibi kenardan düşürmek de sayılır" if tr else "First to two rounds · knocking your rival off the edge counts too")
+	if arena.mode == "local":
+		card.custom_minimum_size = Vector2(1200, 0)
+		card.position = Vector2(-600, -300)
+		var rows := [[["Hareket", "Move"], "A / D", "← / →"], [["Zıpla", "Jump"], "Boşluk", "Enter · Num0"], [["Saldırı", "Attack"], "F", ". · Num1"], [["Yetenekler", "Abilities"], "G · H", ", / · Num2 Num3"]]
+		var s := "[table=3][cell][/cell][cell][center][color=#8ccaff][b]%s[/b][/color][/center][/cell][cell][center][color=#ff8c80][b]%s[/b][/color][/center][/cell]" % [Game.t("p1"), Game.t("p2")]
+		for r in rows:
+			s += "[cell][color=#a895b8]%s[/color]   [/cell][cell][center][b][color=#ffe7b0]%s[/color][/b][/center][/cell][cell][center][b][color=#ffe7b0]%s[/color][/b][/center][/cell]" % [r[0][0] if tr else r[0][1], r[1], r[2]]
+		rt.text = s + "[/table]\n" + rule
+	else:
+		card.custom_minimum_size = Vector2(1100, 0)
+		card.position = Vector2(-550, -220)
+		var keys := "[b][color=#ffe7b0]A/D[/color][/b] hareket · [b][color=#ffe7b0]Boşluk[/color][/b] zıpla · [b][color=#ffe7b0]J[/color][/b] saldırı · [b][color=#ffe7b0]K / L[/color][/b] yetenekler" if tr else "[b][color=#ffe7b0]A/D[/color][/b] move · [b][color=#ffe7b0]Space[/color][/b] jump · [b][color=#ffe7b0]J[/color][/b] attack · [b][color=#ffe7b0]K / L[/color][/b] abilities"
+		rt.text = "[center]%s[/center]\n%s" % [keys, rule]
+	card.add_child(rt)
+	root.add_child(card)
+	var tw := card.create_tween()
+	tw.tween_interval(7.5 if arena.mode == "local" else 5.5)
+	tw.tween_property(card, "modulate:a", 0.0, 0.6)
+	tw.tween_callback(card.queue_free)
 
 func _build_side(i: int) -> void:
 	var f: Creature = arena.fighters[i]

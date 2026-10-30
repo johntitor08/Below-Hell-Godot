@@ -161,6 +161,7 @@ func _build_buttons() -> void:
 	_buttons.add_child(_btn(Game.t("play"), _new_game, not Game.has_progress()))
 	_buttons.add_child(_btn(Game.t("arena"), func(): Transition.go("res://game/arena/arena_menu.tscn")))
 	_buttons.add_child(_btn(Game.t("bestiary"), func(): Transition.go("res://game/ui/bestiary.tscn")))
+	_buttons.add_child(_btn(Game.t("howto"), func(): Transition.go("res://game/ui/howto.tscn")))
 	_buttons.add_child(_btn(Game.t("settings"), func(): Transition.go("res://game/ui/settings.tscn")))
 	if not OS.has_feature("web"):
 		_buttons.add_child(_btn(Game.t("quit"), func(): get_tree().quit()))

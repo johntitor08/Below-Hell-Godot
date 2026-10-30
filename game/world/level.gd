@@ -49,6 +49,9 @@ func _ready() -> void:
 	Audio.music(str(map.meta.get("music", "level")))
 	running = true
 	hud.banner(map.text("name"), map.text("hint"))
+	essence.form_changed.connect(_on_form_changed)
+	if level_index == 0:
+		get_tree().create_timer(4.0, false).timeout.connect(_tip.bind("tip_start"))
 
 func _process(delta: float) -> void:
 	if running and not finished:
@@ -326,14 +329,38 @@ func collect_oz(n: int, _at: Vector2) -> bool:
 		return false
 	collected += n
 	oz_collected.emit(essence.oz)
+	if level_index == 0:
+		var frog := Creatures.get_def("kurbaga")
+		if essence.current() == Creatures.fallback() and essence.oz >= frog.oz_cost:
+			_tip("tip_can_transform")
+		else:
+			_tip("tip_first_oz")
 	return true
+
+func _tip(key: String) -> void:
+	if hud == null or finished:
+		return
+	var seen: Array = Game.save.get("tips", [])
+	if seen.has(key):
+		return
+	seen.append(key)
+	Game.save["tips"] = seen
+	Game.write_save()
+	hud.tip(Game.t(key))
+
+func _on_form_changed(d: CreatureDef) -> void:
+	if level_index == 0 and d.id == "06-kurbaga":
+		_tip("tip_transformed")
+		get_tree().create_timer(9.0, false).timeout.connect(_tip.bind("tip_more"))
 
 func set_checkpoint(p: Vector2) -> void:
 	checkpoint = p
 	hud.toast(Game.t("checkpoint"), Color(0.8, 0.6, 1))
+	_tip("tip_checkpoint")
 
 func _on_player_died(_c) -> void:
 	deaths += 1
+	_tip("tip_died")
 	await get_tree().create_timer(0.9).timeout
 	if finished:
 		return

@@ -53,7 +53,7 @@ func bind(l: Level) -> void:
 	_on_form(l.player.def)
 	_on_hp(l.player.hp, l.player.max_hp)
 	_on_oz(l.essence.oz, l.essence.cap)
-	hint.text = Game.t("transform_hint") + "    " + Game.t("revert_hint")
+	hint.text = Game.t("controls_hint")
 
 func _panel(radius := 16, color := Color(0.1, 0.07, 0.13, 0.82), border := Color(0.43, 0.29, 0.55, 0.9)) -> StyleBoxFlat:
 	var s := StyleBoxFlat.new()
@@ -213,6 +213,48 @@ func banner(title: String, sub: String) -> void:
 	tw.tween_interval(2.4)
 	tw.tween_property(banner_title, "modulate:a", 0.0, 0.8)
 	tw.parallel().tween_property(banner_sub, "modulate:a", 0.0, 0.8)
+
+var _tip_panel: PanelContainer
+var _tip_text: RichTextLabel
+var _tip_gen := 0
+
+func tip(text: String) -> void:
+	if _tip_panel == null:
+		_tip_panel = PanelContainer.new()
+		var st := _panel(16, Color(0.12, 0.08, 0.17, 0.93), Color(0.9, 0.72, 0.36, 0.95))
+		st.content_margin_left = 26
+		st.content_margin_right = 26
+		st.content_margin_top = 16
+		st.content_margin_bottom = 16
+		_tip_panel.add_theme_stylebox_override("panel", st)
+		_tip_panel.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
+		_tip_panel.position = Vector2(-560, -210)
+		_tip_panel.custom_minimum_size = Vector2(1120, 0)
+		_tip_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_tip_text = RichTextLabel.new()
+		_tip_text.bbcode_enabled = true
+		_tip_text.fit_content = true
+		_tip_text.scroll_active = false
+		_tip_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_tip_text.add_theme_font_size_override("normal_font_size", 30)
+		_tip_text.add_theme_font_size_override("bold_font_size", 30)
+		_tip_text.add_theme_font_override("bold_font", load("res://assets/fonts/body_bold.otf"))
+		_tip_text.add_theme_color_override("default_color", Color("efe6f5"))
+		_tip_panel.add_child(_tip_text)
+		root.add_child(_tip_panel)
+	_tip_gen += 1
+	var g := _tip_gen
+	_tip_text.text = "[center][color=#e6b85c]◆[/color]  %s[/center]" % text.replace("[b]", "[b][color=#ffe7b0]").replace("[/b]", "[/color][/b]")
+	_tip_panel.modulate.a = 0.0
+	_tip_panel.scale = Vector2(0.96, 0.96)
+	_tip_panel.pivot_offset = Vector2(560, 40)
+	var tw := _tip_panel.create_tween().set_parallel(true)
+	tw.tween_property(_tip_panel, "modulate:a", 1.0, 0.25)
+	tw.tween_property(_tip_panel, "scale", Vector2.ONE, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	Audio.play("bonus", -12.0, 0.0)
+	await get_tree().create_timer(7.0, false).timeout
+	if g == _tip_gen and is_instance_valid(_tip_panel):
+		_tip_panel.create_tween().tween_property(_tip_panel, "modulate:a", 0.0, 0.5)
 
 func toast(text: String, color := Color.WHITE) -> void:
 	var p := PanelContainer.new()

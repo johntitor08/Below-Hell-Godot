@@ -50,7 +50,15 @@ const TEXT := {
 	"offline": ["Sunucuya bağlanılamadı", "Couldn't reach the server"], "cancel": ["İptal", "Cancel"], "p1": ["Oyuncu 1", "Player 1"],
 	"p2": ["Oyuncu 2", "Player 2"], "cpu": ["Bilgisayar", "CPU"], "victory": ["Zafer", "Victory"], "defeat": ["Yenilgi", "Defeat"],
 	"rematch": ["Rövanş", "Rematch"], "boss_down": ["Bekçi düştü · kapı açıldı", "The warden falls · the gate opens"],
-	"boss_first": ["Önce bekçiyi yen", "Defeat the warden first"], "no_room": ["Bu forma burada yer yok", "No room for that form here"], "opponent_left": ["Rakip ayrıldı", "Opponent left"],
+	"boss_first": ["Önce bekçiyi yen", "Defeat the warden first"], "no_room": ["Bu forma burada yer yok", "No room for that form here"], "howto": ["Nasıl Oynanır", "How to Play"],
+	"controls_hint": ["J saldırı · K / L yetenek · Q basılı: dönüşüm · R: formu bırak (yarı iade)", "J attack · K / L abilities · hold Q: transform · R: drop form (half refund)"],
+	"tip_start": ["Mor küreler [b]Öz[/b]'dür. Üstlerinden geçerek topla.", "The purple orbs are [b]Essence[/b]. Fly through them to collect."],
+	"tip_first_oz": ["Öz topladın! Kurbağa'ya dönüşmek için [b]3 Öz[/b] gerekiyor.", "Essence collected! The Frog costs [b]3 Essence[/b]."],
+	"tip_can_transform": ["Yeterli Öz var! [b]Q[/b]'yu basılı tut, fareyle [b]Kurbağa[/b]'yı seç, Q'yu bırak.", "Enough Essence! Hold [b]Q[/b], point at the [b]Frog[/b], release Q."],
+	"tip_transformed": ["Kurbağa: [b]Boşluk[/b] yüksek zıplar, [b]K[/b] dil kancası atar, [b]J[/b] saldırır. Sağdaki duvarı aş!", "Frog: [b]Space[/b] jumps high, [b]K[/b] fires the tongue, [b]J[/b] attacks. Clear the wall ahead!"],
+	"tip_died": ["Ölünce harcanan Öz gider. [b]R[/b] ile formu bırakırsan yarısı geri gelir.", "Dying loses the spent Essence. Dropping a form with [b]R[/b] refunds half."],
+	"tip_checkpoint": ["Mor alevli direk bir [b]kontrol noktası[/b]: ölürsen buradan devam edersin.", "A purple-flame pole is a [b]checkpoint[/b]: you continue here if you die."],
+	"tip_more": ["Tüm kurallar: Ana Menü → [b]Nasıl Oynanır[/b]", "All the rules: Main Menu → [b]How to Play[/b]"], "opponent_left": ["Rakip ayrıldı", "Opponent left"],
 	"logged_in_as": ["Giriş yapıldı:", "Signed in as"], "record": ["Galibiyet / Mağlubiyet", "Wins / Losses"], "server": ["Sunucu", "Server"],
 	"err_name": ["Kullanıcı adı 3-16 harf/rakam olmalı", "Username must be 3-16 letters/digits"], "err_taken": ["Bu ad alınmış", "That name is taken"],
 	"err_bad": ["Kullanıcı adı ya da şifre yanlış", "Wrong username or password"], "err_short": ["Şifre en az 6 karakter olmalı", "Password must be at least 6 characters"],
@@ -153,7 +161,7 @@ func has_progress() -> bool:
 	return int(save.level) > 0
 
 func reset_progress() -> void:
-	save = {"level": 0, "oz_cap": Creatures.starting_cap(), "oz": 0, "best": {}, "seen": save.get("seen", [])}
+	save = {"level": 0, "oz_cap": Creatures.starting_cap(), "oz": 0, "best": {}, "seen": save.get("seen", []), "tips": []}
 	write_save()
 
 func mark_seen(id: String) -> void:
